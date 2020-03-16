@@ -1,0 +1,26 @@
+{
+  "name": "traveler-app",
+  "version": "1.0.0",
+  "description": "Learning node, express and mongo DB ;)",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mxmilian/traveler-app.git"
+  },
+  "author": "Maksymilian Kierski maxm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mxmilian/traveler-app/issues"
+  },
+  "homepage": "https://github.com/mxmilian/traveler-app#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.3",
+    "nodemon": "^2.0.2"
+  }
+}
