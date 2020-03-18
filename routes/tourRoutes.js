@@ -4,10 +4,14 @@ const { getAllTours,
            getTour,
            createTour,
            updateTour,
-           deleteTour } = require('../controllers/tourController');
+           deleteTour,
+           validateID } = require('../controllers/tourController');
 
 //one router for each of the resource
 const router = express.Router();
+
+router.param('id', validateID);
+
 //Mounting a new router on route
 router
     .route('/')

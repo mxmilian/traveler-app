@@ -3,6 +3,16 @@ const fs = require('fs');
 //convert json to object
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`, 'utf-8'));
 
+const validateID = (req, res, next, val) => {
+    console.log(`I'am working middleware 👩‍💻 with id ${val} and tours param ${tours.length}`);
+    if(parseInt(val) >= tours.length) {
+        return res
+            .status(404)
+            .json({status: 'Failed', message: 'Invalid ID'});
+    }
+    next();
+};
+
 //Routes handlers
 const getAllTours = (req, res) => {
     res.status(200).json({
@@ -16,7 +26,6 @@ const getAllTours = (req, res) => {
 
 const getTour = (req,res) => {
     const tour = tours.find(element => element.id === parseInt(req.params.id));
-    if(!tour) return res.status(404).json({status:'Failed', message:'Invalid ID'});
     res.status(200).json({
         status: 'success',
         data: {
@@ -42,7 +51,6 @@ const createTour = (req, res) => {
 };
 
 const updateTour = (req, res) => {
-    if (parseInt(req.params.id) > tours.params) res.status(404).json({status: 'Failed', message: 'Invalid ID'});
     res.status(200).json({
         status: 'success',
         data: {
@@ -52,7 +60,6 @@ const updateTour = (req, res) => {
 };
 
 const deleteTour = (req, res) => {
-    if(parseInt(req.params.id) > tours.params) res.status(404).json({status:'Failed', message:'Invalid ID'});
     res.status(204).json({
         status: 'success',
         data: null
@@ -65,4 +72,5 @@ module.exports = {
     createTour,
     updateTour,
     deleteTour,
+    validateID
 };
