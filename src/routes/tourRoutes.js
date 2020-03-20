@@ -6,13 +6,13 @@ const {
   createTour,
   updateTour,
   deleteTour,
-  validateID
+  //validateID
 } = require('../controllers/tourController');
 
 //one router for each of the resource
 const router = express.Router();
 
-router.param('id', validateID);
+//router.param('id', validateID);
 
 //Mounting a new router on route
 router
