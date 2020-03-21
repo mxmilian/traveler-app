@@ -21,7 +21,7 @@ app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
 //Error
-const { notFound, errorHandler } = require('./error/errors');
+const { notFound, errorHandler } = require('./errors/errors');
 
 app.use(notFound);
 app.use(errorHandler);
