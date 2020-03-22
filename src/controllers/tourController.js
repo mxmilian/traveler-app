@@ -42,7 +42,6 @@ const getAllTours = async (req, res) => {
       query.select(fields);
     } else {
       query.select('-__v');
-
     }
     //Execute query
     const tours = await query;
