@@ -6,6 +6,7 @@ const {
   createTour,
   updateTour,
   deleteTour,
+  aliasTopTours
   //validateID
 } = require('../controllers/tourController');
 
@@ -15,6 +16,8 @@ const router = express.Router();
 //router.param('id', validateID);
 
 //Mounting a new router on route
+router.route('/top5').get(aliasTopTours, getAllTours);
+
 router
   .route('/')
   .get(getAllTours)

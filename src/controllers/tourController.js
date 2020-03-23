@@ -6,7 +6,14 @@ const Tour = require('../models/tourModel');
 //     status: 'fail',
 //     data: null
 //   });
-// };
+//
+
+const aliasTopTours = (req, res, next) => {
+  req.query.limit = '5';
+  req.query.sort = '-ratingsAverage,price';
+  req.query.fields = 'name,price,ratingsAverage,difficulty,summary';
+  next();
+};
 
 //Routes handlers
 const getAllTours = async (req, res) => {
@@ -42,6 +49,21 @@ const getAllTours = async (req, res) => {
       query.select(fields);
     } else {
       query.select('-__v');
+    }
+
+    //4) Pagination
+    // eslint-disable-next-line radix
+    const page = parseInt(req.query.page) || 1;
+    // eslint-disable-next-line radix
+    const limit = parseInt(req.query.limit) || 100;
+    const skip = (page - 1) * limit;
+    query.skip(skip).limit(limit);
+
+    if (req.query.page) {
+      const numberOfTours = await Tour.countDocuments();
+      if (numberOfTours <= skip) {
+        throw new Error('This page does not exist!');
+      }
     }
     //Execute query
     const tours = await query;
@@ -140,6 +162,7 @@ module.exports = {
   getTour,
   createTour,
   updateTour,
-  deleteTour
+  deleteTour,
+  aliasTopTours
   //validateID
 };
