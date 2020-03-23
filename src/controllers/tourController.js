@@ -18,53 +18,52 @@ const aliasTopTours = (req, res, next) => {
 //Routes handlers
 const getAllTours = async (req, res) => {
   try {
-    console.log(req.query);
-
-    //Build query
-    //1A) Prepare query
-    const queryObj = { ...req.query };
+    //Prepare query
+    const extendedQuery = { ...req.query };
     const excludedFields = ['page', 'sort', 'limit', 'fields'];
-    excludedFields.forEach(el => {
-      delete queryObj[el];
-    });
+    excludedFields.forEach(el => delete extendedQuery[el]);
 
-    //1B)Filtering
-    const queryStr = JSON.stringify(queryObj).replace(
+    const stringifyQuery = JSON.stringify(extendedQuery).replace(
       /\b(gte|gt|lte|lt)\b/g,
       match => `$${match}`
     );
-    const query = Tour.find(JSON.parse(queryStr));
 
-    //2) Sorting by
+    //Filter query e.g. ?price[gt]=100
+    const query = Tour.find(JSON.parse(stringifyQuery));
+
+    //Sort query e.q. ?sort=price
     if (req.query.sort) {
       const sortBy = req.query.sort.split(',').join(' ');
       query.sort(sortBy);
     } else {
+      //Default sorted by createdAt
       query.sort('createdAt');
     }
 
-    //3) Limitings fields
+    //Selected fields are displayed ?fields=name,price
     if (req.query.fields) {
       const fields = req.query.fields.split(',').join(' ');
       query.select(fields);
     } else {
-      query.select('-__v');
+      //Default fields are displayed
+      query.select('name price difficulty duration summary');
     }
 
-    //4) Pagination
-    // eslint-disable-next-line radix
-    const page = parseInt(req.query.page) || 1;
-    // eslint-disable-next-line radix
-    const limit = parseInt(req.query.limit) || 100;
-    const skip = (page - 1) * limit;
-    query.skip(skip).limit(limit);
+    //Pagination ?page=1&?limit=5
+    // default ?page=1%limit=10
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 10;
+    const skip = (page - 1) * 10;
+    query.skip(skip);
+    query.limit(limit);
 
     if (req.query.page) {
-      const numberOfTours = await Tour.countDocuments();
-      if (numberOfTours <= skip) {
-        throw new Error('This page does not exist!');
+      const numberOfElements = await Tour.countDocuments();
+      if (numberOfElements <= skip) {
+        throw new Error('This page does not exist');
       }
     }
+
     //Execute query
     const tours = await query;
 
