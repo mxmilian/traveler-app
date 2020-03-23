@@ -1,4 +1,5 @@
 const Tour = require('../models/tourModel');
+const APIqueryFeatures = require('../utils/apiQueryFeatures');
 
 // const validateID = (req, res, next, val) => {
 //   console.log(req.params);
@@ -18,54 +19,13 @@ const aliasTopTours = (req, res, next) => {
 //Routes handlers
 const getAllTours = async (req, res) => {
   try {
-    //Prepare query
-    const extendedQuery = { ...req.query };
-    const excludedFields = ['page', 'sort', 'limit', 'fields'];
-    excludedFields.forEach(el => delete extendedQuery[el]);
-
-    const stringifyQuery = JSON.stringify(extendedQuery).replace(
-      /\b(gte|gt|lte|lt)\b/g,
-      match => `$${match}`
-    );
-
-    //Filter query e.g. ?price[gt]=100
-    const query = Tour.find(JSON.parse(stringifyQuery));
-
-    //Sort query e.q. ?sort=price
-    if (req.query.sort) {
-      const sortBy = req.query.sort.split(',').join(' ');
-      query.sort(sortBy);
-    } else {
-      //Default sorted by createdAt
-      query.sort('createdAt');
-    }
-
-    //Selected fields are displayed ?fields=name,price
-    if (req.query.fields) {
-      const fields = req.query.fields.split(',').join(' ');
-      query.select(fields);
-    } else {
-      //Default fields are displayed
-      query.select('name price difficulty duration summary');
-    }
-
-    //Pagination ?page=1&?limit=5
-    // default ?page=1%limit=10
-    const page = Number(req.query.page) || 1;
-    const limit = Number(req.query.limit) || 10;
-    const skip = (page - 1) * 10;
-    query.skip(skip);
-    query.limit(limit);
-
-    if (req.query.page) {
-      const numberOfElements = await Tour.countDocuments();
-      if (numberOfElements <= skip) {
-        throw new Error('This page does not exist');
-      }
-    }
-
     //Execute query
-    const tours = await query;
+    const { mongooseQuery } = new APIqueryFeatures(Tour.find(), req.query)
+      .filter()
+      .sort()
+      .fields()
+      .pagination();
+    const tours = await mongooseQuery;
 
     //Respond
     res.status(200).json({
@@ -78,7 +38,7 @@ const getAllTours = async (req, res) => {
     res.status(400);
     res.json({
       status: 'fail',
-      message: e.message
+      message: e.stack
     });
   }
 };
