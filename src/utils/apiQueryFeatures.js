@@ -1,12 +1,12 @@
 module.exports = class APIqueryFeatures {
-  constructor(mongooseQuery, queryString) {
+  constructor(mongooseQuery, requestQuery) {
     this.mongooseQuery = mongooseQuery;
-    this.queryString = queryString;
+    this.requestQuery = requestQuery;
   }
 
   filter() {
     //Prepare query
-    const extendedQuery = { ...this.queryString };
+    const extendedQuery = { ...this.requestQuery };
     const excludedFields = ['page', 'sort', 'limit', 'fields'];
     excludedFields.forEach(el => delete extendedQuery[el]);
 
@@ -22,8 +22,8 @@ module.exports = class APIqueryFeatures {
 
   sort() {
     //Sort query e.q. ?sort=price
-    if (this.queryString.sort) {
-      const sortBy = this.queryString.sort.split(',').join(' ');
+    if (this.requestQuery.sort) {
+      const sortBy = this.requestQuery.sort.split(',').join(' ');
       this.mongooseQuery.sort(sortBy);
     } else {
       //Default sorted by createdAt
@@ -34,12 +34,14 @@ module.exports = class APIqueryFeatures {
 
   fields() {
     //Selected fields are displayed ?fields=name,price
-    if (this.queryString.fields) {
-      const fields = this.queryString.fields.split(',').join(' ');
+    if (this.requestQuery.fields) {
+      const fields = this.requestQuery.fields.split(',').join(' ');
       this.mongooseQuery.select(fields);
     } else {
       //Default fields are displayed
-      this.mongooseQuery.select('name price difficulty duration summary');
+      this.mongooseQuery.select(
+        'name price ratingsAverage difficulty duration summary'
+      );
     }
     return this;
   }
@@ -47,8 +49,8 @@ module.exports = class APIqueryFeatures {
   pagination() {
     //Pagination ?page=1&?limit=5
     // default ?page=1&limit=10
-    const page = Number(this.queryString.page) || 1;
-    const limit = Number(this.queryString.limit) || 10;
+    const page = Number(this.requestQuery.page) || 1;
+    const limit = Number(this.requestQuery.limit) || 10;
     const skip = (page - 1) * 10;
     this.mongooseQuery.skip(skip).limit(limit);
     return this;

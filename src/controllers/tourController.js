@@ -1,14 +1,6 @@
 const Tour = require('../models/tourModel');
 const APIqueryFeatures = require('../utils/apiQueryFeatures');
 
-// const validateID = (req, res, next, val) => {
-//   console.log(req.params);
-//   res.json({
-//     status: 'fail',
-//     data: null
-//   });
-//
-
 const aliasTopTours = (req, res, next) => {
   req.query.limit = '5';
   req.query.sort = '-ratingsAverage,price';
@@ -116,12 +108,43 @@ const deleteTour = async (req, res) => {
   }
 };
 
+const getTourStats = async (req, res) => {
+  try {
+    const stats = await Tour.aggregate([
+      { $match: {} },
+      {
+        $group: {
+          _id: { $toUpper: '$difficulty' },
+          countTours: { $sum: 1 },
+          totalPriceOfTours: { $sum: '$price' }
+        }
+      },
+      {
+        $sort: {
+          countTours: -1
+        }
+      }
+    ]);
+    res.status(200).json({
+      status: 'success',
+      data: {
+        stats
+      }
+    });
+  } catch (e) {
+    res.status(400).json({
+      status: 'fail',
+      message: e.message
+    });
+  }
+};
+
 module.exports = {
   getAllTours,
   getTour,
   createTour,
   updateTour,
   deleteTour,
-  aliasTopTours
-  //validateID
+  aliasTopTours,
+  getTourStats
 };
