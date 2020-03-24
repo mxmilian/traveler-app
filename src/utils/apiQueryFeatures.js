@@ -40,7 +40,7 @@ module.exports = class APIqueryFeatures {
     } else {
       //Default fields are displayed
       this.mongooseQuery.select(
-        'name price ratingsAverage difficulty duration summary'
+        'name price ratingsAverage difficulty startDates duration summary'
       );
     }
     return this;
