@@ -87,16 +87,6 @@ tourSchema.pre('save', function(next) {
   next();
 });
 
-// tourSchema.pre('save', function(next) {
-//   console.log(`I will save this document with that name: ${this.name}`);
-//   next();
-// });
-
-tourSchema.post('save', function(doc, next) {
-  console.log(`I saved this document with that name: ${this.name}`);
-  next();
-});
-
 //Query middleware: runs before query find findOne findOneAndDelete findOneAndRemove find OneAndUpdate...
 tourSchema.pre(/^find/, function(next) {
   this.find({ secretTour: { $ne: true } });
@@ -105,7 +95,13 @@ tourSchema.pre(/^find/, function(next) {
 });
 
 tourSchema.post(/^find/, function(doc, next) {
-  console.log(`This query took ${(Date.now() - this.start)} milliseconds`);
+  console.log(`This query took ${Date.now() - this.start} milliseconds`);
+  next();
+});
+
+//Aggregate middleware: runs before aggregate
+tourSchema.pre('aggregate', function(next) {
+  this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
   next();
 });
 
