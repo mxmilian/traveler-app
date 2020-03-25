@@ -27,7 +27,7 @@ module.exports = class APIqueryFeatures {
       this.mongooseQuery.sort(sortBy);
     } else {
       //Default sorted by createdAt
-      this.mongooseQuery.sort('createdAt');
+      this.mongooseQuery.sort({ createdAt: -1 });
     }
     return this;
   }
