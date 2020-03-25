@@ -23,7 +23,8 @@
     "helmet": "^3.21.3",
     "mongoose": "^5.9.5",
     "morgan": "^1.9.1",
-    "slugify": "^1.4.0"
+    "slugify": "^1.4.0",
+    "validator": "^13.0.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.3",
