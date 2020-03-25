@@ -1,4 +1,5 @@
 const Tour = require('../models/tourModel');
+const { errorHandler } = require('../errors/errors');
 const APIqueryFeatures = require('../utils/apiQueryFeatures');
 
 const aliasTopTours = (req, res, next) => {
@@ -45,11 +46,7 @@ const getTour = async (req, res) => {
       }
     });
   } catch (e) {
-    res.status(400);
-    res.json({
-      status: 'fail',
-      message: e.message
-    });
+    errorHandler(e, req, res);
   }
 };
 

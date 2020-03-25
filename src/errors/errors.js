@@ -1,13 +1,16 @@
 const notFound = (req, res, next) => {
   const error = new Error(`Not found💥 - ${req.originalUrl}`);
-  res.status(404);
+  error.status = 'fail';
+  error.statusCode = 404;
   next(error);
 };
 
+//Global error handling middleware
 const errorHandler = (error, req, res, next) => {
-  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-  res.status(statusCode);
+  error.statusCode = error.statusCode === 200 ? 500 : error.statusCode;
+  error.status = error.status || 'error';
   res.json({
+    status: error.status,
     message: error.message,
     stack: error.stack
   });
