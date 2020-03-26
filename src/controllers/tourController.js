@@ -1,6 +1,7 @@
 const Tour = require('../models/tourModel');
 const catchAsync = require('../errors/catchAsync');
 const APIqueryFeatures = require('../utils/apiQueryFeatures');
+const { Errors } = require('../errors/errors');
 
 const aliasTopTours = (req, res, next) => {
   req.query.limit = '5';
@@ -10,7 +11,7 @@ const aliasTopTours = (req, res, next) => {
 };
 
 //Routes handlers
-const getAllTours = catchAsync(async (req, res) => {
+const getAllTours = catchAsync(async (req, res, next) => {
   //Execute query
   const { mongooseQuery } = new APIqueryFeatures(Tour.find(), req.query)
     .filter()
@@ -28,8 +29,11 @@ const getAllTours = catchAsync(async (req, res) => {
   });
 });
 
-const getTour = catchAsync(async (req, res) => {
+const getTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findById(req.params.id);
+  if (!tour) {
+    return next(new Errors(`Not found💥 - ${req.originalUrl}`, 404));
+  }
   res.status(200).json({
     status: 'success',
     data: {
@@ -38,7 +42,7 @@ const getTour = catchAsync(async (req, res) => {
   });
 });
 
-const createTour = catchAsync(async (req, res) => {
+const createTour = catchAsync(async (req, res, next) => {
   const newTour = await Tour.create(req.body);
   res.status(201).json({
     status: 'success',
@@ -48,7 +52,7 @@ const createTour = catchAsync(async (req, res) => {
   });
 });
 
-const updateTour = catchAsync(async (req, res) => {
+const updateTour = catchAsync(async (req, res, next) => {
   const updatedTour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true
@@ -61,8 +65,13 @@ const updateTour = catchAsync(async (req, res) => {
   });
 });
 
-const deleteTour = catchAsync(async (req, res) => {
+const deleteTour = catchAsync(async (req, res, next) => {
   const deletedTour = await Tour.findByIdAndDelete(req.params.id);
+  if (!deletedTour) {
+    return next(
+      new Errors(`Cannot delete non-existent item💥 - ${req.originalUrl}`, 400)
+    );
+  }
   res.status(200).json({
     status: 'success',
     data: {
@@ -71,7 +80,7 @@ const deleteTour = catchAsync(async (req, res) => {
   });
 });
 
-const getMonthlyPlan = catchAsync(async (req, res) => {
+const getMonthlyPlan = catchAsync(async (req, res, next) => {
   const year = Number(req.params.year);
   const monthlyPlan = await Tour.aggregate([
     {
