@@ -22,9 +22,17 @@ app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
 //Error
-const { notFound, errorHandler } = require('./errors/errors');
+const { Errors, errorHandler } = require('./errors/errors');
 
-app.use(notFound);
+// const notFound = (req, res, next) => {
+//   const error = new Error(`Not found💥 - ${req.originalUrl}`);
+//   error.status = 'fail';
+//   error.statusCode = 404;
+//   next(error);
+// };
+app.use((req, res, next) =>
+  next(new Errors(`Not found💥 - ${req.originalUrl}`, 404))
+);
 app.use(errorHandler);
 
 module.exports = app;

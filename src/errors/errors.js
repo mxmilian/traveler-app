@@ -1,15 +1,20 @@
-const notFound = (req, res, next) => {
-  const error = new Error(`Not found💥 - ${req.originalUrl}`);
-  error.status = 'fail';
-  error.statusCode = 404;
-  next(error);
-};
+class Errors extends Error {
+  constructor(message, statusCode) {
+    super(message);
+
+    this.statusCode = statusCode;
+    this.status = `${statusCode}`.startsWith('4') ? 'fail' : 'error';
+    this.isOperational = true;
+
+    Error.captureStackTrace(this, this.constructor);
+  }
+}
 
 //Global error handling middleware
 const errorHandler = (error, req, res, next) => {
-  error.statusCode = error.statusCode === 200 ? 500 : error.statusCode;
+  error.statsCode = error.statsCode || 404;
   error.status = error.status || 'error';
-  res.json({
+  res.statusCode(error.status).json({
     status: error.status,
     message: error.message,
     stack: error.stack
@@ -17,6 +22,6 @@ const errorHandler = (error, req, res, next) => {
 };
 
 module.exports = {
-  notFound,
+  Errors,
   errorHandler
 };
