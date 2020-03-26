@@ -24,14 +24,8 @@ app.use('/api/v1/users', userRouter);
 //Error
 const { Errors, errorHandler } = require('./errors/errors');
 
-// const notFound = (req, res, next) => {
-//   const error = new Error(`Not found💥 - ${req.originalUrl}`);
-//   error.status = 'fail';
-//   error.statusCode = 404;
-//   next(error);
-// };
 app.use((req, res, next) =>
-  next(new Errors(`Not found💥 - ${req.originalUrl}`, 404))
+  next(new Errors(`Not found💥 - ${req.originalUrl}`, 424))
 );
 app.use(errorHandler);
 
