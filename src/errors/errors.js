@@ -12,7 +12,7 @@ class Errors extends Error {
 
 //Global error handling middleware
 const errorHandler = (error, req, res, next) => {
-  error.statusCode = error.statusCode || '404';
+  error.statusCode = error.statusCode || '500';
   error.status = error.status || 'error';
   res.status(error.statusCode).json({
     statusCode: error.statusCode,
