@@ -48,10 +48,14 @@ const handleDuplicateErrorDB = error => {
   return new Errors(message, 400);
 };
 
-// const handleValidationErrorDB = error => {
-//   const message = ``;
-//   return new Errors(message, 400);
-// };
+const handleValidationErrorDB = error => {
+  const errors = Object.values(error.errors)
+    .map(el => el.message)
+    .join(`. `);
+
+  const message = `Validation errors 🙀: ${errors}`;
+  return new Errors(message, 400);
+};
 
 //Global error handling middleware
 const errorHandler = (error, req, res, next) => {
@@ -72,6 +76,9 @@ const errorHandler = (error, req, res, next) => {
     }
 
     //Validation
+    if (error.name === 'ValidationError') {
+      prodError = handleValidationErrorDB(error);
+    }
     errorProd(prodError, res);
   }
 };
