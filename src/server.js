@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const app = require('./app');
 
+//Listen all uncaught exceptions
+process.on('uncaughtException', error => {
+  console.log(`UNCAUGHT EXCEPTION !💥☠️ ️${(error.name, error.message)}`);
+  process.exit(1);
+});
+
 console.clear();
 dotenv.config({ path: './config.env' });
 const dbConnectUrl = process.env.DATABASE.replace(
@@ -25,7 +31,7 @@ const server = app.listen(port, () => {
   console.log(`I'am listening on port ${port}🦻`);
 });
 
-//Handle all unhandled rejections
+//Listen all unhandled rejections
 process.on('unhandledRejection', error => {
   console.log(`UNHANDLED REJECTION!💥☠️ ️${(error.name, error.message)}`);
 

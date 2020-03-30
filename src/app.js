@@ -22,7 +22,8 @@ app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
 //Error
-const { Errors, errorHandler } = require('./errors/errors');
+const { errorHandler } = require('./errors/errors');
+const Errors = require('./errors/errorsClass');
 
 app.use((req, res, next) =>
   next(new Errors(`Not found💥 - ${req.originalUrl}`, 404))

@@ -1,14 +1,4 @@
-class Errors extends Error {
-  constructor(message, statusCode) {
-    super(message);
-
-    this.statusCode = statusCode;
-    this.status = `${statusCode}`.startsWith('4') ? 'fail' : 'error';
-    this.isOperational = true;
-
-    Error.captureStackTrace(this, this.constructor);
-  }
-}
+const Errors = require('./errorsClass');
 
 const errorDev = (error, res) => {
   res.status(error.statusCode).json({
@@ -38,24 +28,11 @@ const errorProd = (error, res) => {
   }
 };
 
-const handleCastErrorDB = error => {
-  const message = `Wrong ${error.path}: ${error.value} 🦠`;
-  return new Errors(message, 400);
-};
-
-const handleDuplicateErrorDB = error => {
-  const message = `Name should be unique. This name is already exists in data base ${error.keyValue.name} 🦄`;
-  return new Errors(message, 400);
-};
-
-const handleValidationErrorDB = error => {
-  const errors = Object.values(error.errors)
-    .map(el => el.message)
-    .join(`. `);
-
-  const message = `Validation errors 🙀: ${errors}`;
-  return new Errors(message, 400);
-};
+const {
+  handleCastErrorDB,
+  handleDuplicateErrorDB,
+  handleValidationErrorDB
+} = require('./prodErros');
 
 //Global error handling middleware
 const errorHandler = (error, req, res, next) => {
