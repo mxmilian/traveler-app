@@ -15,17 +15,20 @@ const errorDev = (error, res) => {
     statusCode: error.statusCode,
     status: error.status,
     error: error,
+    name: error.name,
     message: error.message,
     stack: error.stack
   });
 };
 
 const errorProd = (error, res) => {
+  //Operational, trusted error
   if (error.isOperational) {
     res.status(error.statusCode).json({
       status: error.status,
       message: error.message
     });
+    //Programming or other unknown errors
   } else {
     console.error('ERROR💥', error);
     res.status(500).json({
@@ -35,6 +38,11 @@ const errorProd = (error, res) => {
   }
 };
 
+const handleCastErrorDB = error => {
+  const message = `Wrong ${error.path}: ${error.value}`;
+  return new Errors(message, 400);
+};
+
 //Global error handling middleware
 const errorHandler = (error, req, res, next) => {
   error.statusCode = error.statusCode || '500';
@@ -42,7 +50,12 @@ const errorHandler = (error, req, res, next) => {
   if (process.env.NODE_ENV === 'development') {
     errorDev(error, res);
   } else if (process.env.NODE_ENV === 'production') {
-    errorProd(error, res);
+    let prodError = { ...error };
+
+    if (prodError.name === 'CastError') {
+      prodError = handleCastErrorDB(error);
+    }
+    errorProd(prodError, res);
   }
 };
 
