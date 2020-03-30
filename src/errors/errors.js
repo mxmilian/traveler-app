@@ -39,9 +39,19 @@ const errorProd = (error, res) => {
 };
 
 const handleCastErrorDB = error => {
-  const message = `Wrong ${error.path}: ${error.value}`;
+  const message = `Wrong ${error.path}: ${error.value} 🦠`;
   return new Errors(message, 400);
 };
+
+const handleDuplicateErrorDB = error => {
+  const message = `Name should be unique. This name is already exists in data base ${error.keyValue.name} 🦄`;
+  return new Errors(message, 400);
+};
+
+// const handleValidationErrorDB = error => {
+//   const message = ``;
+//   return new Errors(message, 400);
+// };
 
 //Global error handling middleware
 const errorHandler = (error, req, res, next) => {
@@ -52,9 +62,16 @@ const errorHandler = (error, req, res, next) => {
   } else if (process.env.NODE_ENV === 'production') {
     let prodError = { ...error };
 
+    //Invalid path
     if (prodError.name === 'CastError') {
       prodError = handleCastErrorDB(error);
     }
+    //Double unique value
+    if (error.code === 11000) {
+      prodError = handleDuplicateErrorDB(error);
+    }
+
+    //Validation
     errorProd(prodError, res);
   }
 };
