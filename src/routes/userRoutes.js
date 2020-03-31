@@ -6,9 +6,14 @@ const {
   updateUser,
   deleteUser
 } = require('../controllers/userController');
+
+const { signUp } = require('../controllers/authController');
 //one router for each of the resource
 const router = express.Router();
+
 //Mounting a new router on route
+router.post('/signUp', signUp);
+
 router
   .route('/')
   .get(getAllUsers)
