@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { isEmail, isAlphanumeric } = require('validator');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -40,12 +41,21 @@ const userSchema = new mongoose.Schema({
     maxlength: [40, 'Password must have less or equal then 40 characters!👿'],
     minlength: [8, 'Password must have more or equal then 10 characters!👿'],
     validate: {
+      //This works only for CREATE and SAVE
       validator: function() {
         return this.password === this.confirmPassword;
       },
       message: 'These passwords are not the same👿'
     }
   }
+});
+
+//Encryption password by using mongoose middleware
+userSchema.pre('save', async function(next) {
+  if (!this.isModified('password')) return next();
+  this.password = await bcrypt.hash(this.password, 12);
+  this.confirmPassword = undefined;
+  next();
 });
 
 const User = mongoose.model('User', userSchema);
