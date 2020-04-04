@@ -31,7 +31,9 @@ const errorProd = (error, res) => {
 const {
   handleCastErrorDB,
   handleDuplicateErrorDB,
-  handleValidationErrorDB
+  handleValidationErrorDB,
+  handleJWTError,
+  handleJWTExpiredError
 } = require('./prodErros');
 
 //Global error handling middleware
@@ -55,6 +57,16 @@ const errorHandler = (error, req, res, next) => {
     //Validation
     if (error.name === 'ValidationError') {
       prodError = handleValidationErrorDB(error);
+    }
+
+    //JWT error
+    if (error.name === 'JsonWebTokenError') {
+      prodError = handleJWTError(error);
+    }
+
+    //JWT expired
+    if (error.name === 'TokenExpiredError') {
+      prodError = handleJWTExpiredError(error);
     }
     errorProd(prodError, res);
   }

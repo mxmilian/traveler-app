@@ -1,7 +1,6 @@
 const Errors = require('./errorsClass');
 
 const handleCastErrorDB = error => {
-  console.log(typeof Errors);
   const message = `Wrong ${error.path}: ${error.value} 🦠`;
   return new Errors(message, 400);
 };
@@ -20,8 +19,18 @@ const handleValidationErrorDB = error => {
   return new Errors(message, 400);
 };
 
+const handleJWTError = () => {
+  return new Errors('Invalid token. Please log in again!😢', 401);
+};
+
+const handleJWTExpiredError = () => {
+  return new Errors('Your token is expired please log in again!🤗', 401);
+};
+
 module.exports = {
   handleCastErrorDB,
   handleDuplicateErrorDB,
-  handleValidationErrorDB
+  handleValidationErrorDB,
+  handleJWTError,
+  handleJWTExpiredError
 };

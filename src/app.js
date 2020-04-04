@@ -11,7 +11,6 @@ app.use(express.json());
 app.use((req, res, next) => {
   console.clear();
   console.log(`I'am really happy that you use my app!💜`);
-  console.log(req.headers);
   next();
 });
 
