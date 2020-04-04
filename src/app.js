@@ -4,13 +4,14 @@ const helmet = require('helmet');
 
 const app = express();
 //This allows us to get access to the body from request
+app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(helmet());
 
 app.use((req, res, next) => {
   console.clear();
   console.log(`I'am really happy that you use my app!💜`);
+  console.log(req.headers);
   next();
 });
 

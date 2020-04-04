@@ -24,8 +24,8 @@ const signUp = catchAsync(async (req, res, next) => {
 
   res.status(201).json({
     status: 'success',
-    token,
     data: {
+      token,
       user: newUser
     }
   });
@@ -48,7 +48,9 @@ const login = catchAsync(async (req, res, next) => {
   const token = signToken(user._id);
   res.status(200).json({
     status: 'success',
-    token
+    data: {
+      token
+    }
   });
 });
 

@@ -10,6 +10,10 @@ const {
   getMonthlyPlan
 } = require('../controllers/tourController');
 
+const {
+    protectRoute
+} = require('../middlewares/authProtect')
+
 //one router for each of the resource
 const router = express.Router();
 
@@ -19,7 +23,7 @@ router.route('/monthlyPlan/:year').get(getMonthlyPlan);
 
 router
   .route('/')
-  .get(getAllTours)
+  .get(protectRoute, getAllTours)
   .post(createTour);
 
 router
