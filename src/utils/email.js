@@ -19,12 +19,8 @@ const sendEmail = async options => {
     message: options.message
   };
 
-  try {
-    // 3) Actually send the email
-    await transporter.sendMail(emailOptions);
-  } catch (e) {
-    console.log(`XD${e}`);
-  }
+  // 3) Actually send the email
+  await transporter.sendMail(emailOptions);
 };
 
 module.exports = sendEmail;

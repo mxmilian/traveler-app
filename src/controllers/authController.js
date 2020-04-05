@@ -81,7 +81,6 @@ const forgotPassword = catchAsync(async (req, res, next) => {
       }
     });
   } catch (e) {
-    console.log(e);
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save({ validateBeforeSave: false });
