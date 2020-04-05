@@ -48,6 +48,10 @@ const userSchema = new mongoose.Schema({
       },
       message: 'These passwords are not the same👿'
     }
+  },
+  passwordChangedAt: {
+    type: Date,
+    default: Date.now()
   }
 });
 
