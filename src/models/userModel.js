@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { isEmail, isAlphanumeric } = require('validator');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -54,7 +55,9 @@ const userSchema = new mongoose.Schema({
       message: 'These passwords are not the same👿'
     }
   },
-  passwordChangedAt: Date
+  passwordChangedAt: Date,
+  passwordResetToken: String,
+  passwordResetExpires: Date
 });
 
 //Encryption password by using mongoose middleware
@@ -64,6 +67,20 @@ userSchema.pre('save', async function(next) {
   this.confirmPassword = undefined;
   next();
 });
+
+userSchema.methods.createPassResToken = function() {
+  const resetToken = crypto.randomBytes(32).toString('hex');
+  this.passwordResetToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+
+  console.log(`reset token${resetToken} hashes${this.passwordResetToken}`);
+
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
+  return resetToken;
+};
 
 const User = mongoose.model('User', userSchema);
 

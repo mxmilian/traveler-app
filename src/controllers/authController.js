@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/userModel');
 const catchAsync = require('../errors/catchAsync');
 const Errors = require('../errors/errorsClass');
+const sendEmail = require('../utils/email');
 
 const signToken = id => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -54,7 +55,48 @@ const login = catchAsync(async (req, res, next) => {
   });
 });
 
+const forgotPassword = catchAsync(async (req, res, next) => {
+  const user = await User.findOne({ email: req.body.email });
+  if (!user)
+    return next(new Errors('There is no user with this email!😢'), 404);
+
+  const resetToken = user.createPassResToken();
+  await user.save({ validateBeforeSave: false });
+
+  const resetURL = `${req.protocol}://${req.get(
+    'host'
+  )}/api/v1/users/resetPassword/${resetToken}`;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: 'Reset your password 🧐 (10 minutes)',
+      message: `Reset your password by clicking here ${resetURL}.`
+    });
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        message: 'Token sent to email!'
+      }
+    });
+  } catch (e) {
+    console.log(e);
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save({ validateBeforeSave: false });
+    return next(
+      new Errors('Cannot send a message right now, please try again later!😢'),
+      404
+    );
+  }
+});
+
+const resetPassword = catchAsync(async (req, res, next) => {});
+
 module.exports = {
   signUp,
-  login
+  login,
+  forgotPassword,
+  resetPassword
 };
