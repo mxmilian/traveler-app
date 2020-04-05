@@ -10,9 +10,7 @@ const {
   getMonthlyPlan
 } = require('../controllers/tourController');
 
-const {
-    protectRoute
-} = require('../middlewares/authProtect')
+const { protectRoute, restrictRoute } = require('../middlewares/authProtect');
 
 //one router for each of the resource
 const router = express.Router();
@@ -30,6 +28,6 @@ router
   .route('/:id')
   .get(getTour)
   .patch(updateTour)
-  .delete(deleteTour);
+  .delete(protectRoute, restrictRoute('admins', 'moderators'), deleteTour);
 
 module.exports = router;

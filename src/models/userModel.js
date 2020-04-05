@@ -36,6 +36,11 @@ const userSchema = new mongoose.Schema({
     minlength: [8, 'Password must have more or equal then 10 characters!👿'],
     select: false
   },
+  role: {
+    type: String,
+    enum: ['user', 'guide', 'moderator', 'admin'],
+    default: 'user'
+  },
   confirmPassword: {
     type: String,
     required: [true, 'Password is required!👿'],
@@ -49,10 +54,7 @@ const userSchema = new mongoose.Schema({
       message: 'These passwords are not the same👿'
     }
   },
-  passwordChangedAt: {
-    type: Date,
-    default: Date.now()
-  }
+  passwordChangedAt: Date
 });
 
 //Encryption password by using mongoose middleware

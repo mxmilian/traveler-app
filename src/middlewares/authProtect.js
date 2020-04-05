@@ -48,6 +48,15 @@ const protectRoute = catchAsync(async (req, res, next) => {
   next();
 });
 
+const restrictRoute = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role))
+      return next(new Errors('You do not have permission to get access', 401));
+    next();
+  };
+};
+
 module.exports = {
-  protectRoute
+  protectRoute,
+  restrictRoute
 };
