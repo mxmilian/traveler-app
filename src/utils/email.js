@@ -11,7 +11,6 @@ const sendEmail = async options => {
     }
   });
   // 2) Define the email options
-  console.log(options);
   const emailOptions = {
     from: 'Traveller app',
     to: options.email,

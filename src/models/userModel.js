@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
   },
   confirmPassword: {
     type: String,
-    required: [true, 'Password is required!👿'],
+    required: [true, 'Confirm password is required!👿'],
     maxlength: [40, 'Password must have less or equal then 40 characters!👿'],
     minlength: [8, 'Password must have more or equal then 10 characters!👿'],
     validate: {
@@ -81,6 +81,13 @@ userSchema.methods.createPassResToken = function() {
 
   return resetToken;
 };
+
+userSchema.pre('save', function(next) {
+  if (!this.isModified('password') || this.isNew) return next();
+  this.passwordChangedAt = Date.now() - 1000;
+  console.log(Date(Date.now()).toString());
+  next();
+});
 
 const User = mongoose.model('User', userSchema);
 

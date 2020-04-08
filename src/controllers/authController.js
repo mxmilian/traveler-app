@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 const User = require('../models/userModel');
 const catchAsync = require('../errors/catchAsync');
 const Errors = require('../errors/errorsClass');
@@ -73,6 +74,7 @@ const forgotPassword = catchAsync(async (req, res, next) => {
       subject: 'Reset your password 🧐 (10 minutes)',
       message: `Reset your password by clicking here ${resetURL}.`
     });
+    console.log(resetToken);
 
     res.status(200).json({
       status: 'success',
@@ -91,7 +93,39 @@ const forgotPassword = catchAsync(async (req, res, next) => {
   }
 });
 
-const resetPassword = catchAsync(async (req, res, next) => {});
+const resetPassword = catchAsync(async (req, res, next) => {
+  const urlToken = req.params.token;
+
+  //Find user by the token and check
+  const user = await User.findOne({
+    passwordResetToken: crypto
+      .createHash('sha256')
+      .update(urlToken)
+      .digest('hex'),
+    passwordResetExpires: { $gt: Date.now() }
+  });
+
+  if (!user) return next(new Errors('Token is invalid or has expired🙁', 400));
+
+  user.password = req.body.password;
+  user.confirmPassword = req.body.confirmPassword;
+  //Deleting pass token and expires
+  user.passwordResetToken = undefined;
+  user.passwordResetExpires = undefined;
+  console.log(user);
+  await user.save();
+
+  console.log('xd');
+  const token = signToken(user._id);
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      user,
+      token
+    }
+  });
+});
 
 module.exports = {
   signUp,
