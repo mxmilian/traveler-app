@@ -3,6 +3,7 @@ const {
   getAllUsers,
   getUser,
   createUser,
+  updateMe,
   updateUser,
   deleteUser
 } = require('../controllers/userController');
@@ -22,9 +23,13 @@ const router = express.Router();
 //Mounting a new router on route
 router.post('/signUp', signUp);
 router.post('/login', login);
+
 router.post('/forgotPassword', forgotPassword);
 router.patch('/resetPassword/:token', resetPassword);
+
 router.patch('/changePassword', protectRoute, changePassword);
+
+router.patch('/updateMe', protectRoute, updateMe);
 
 router
   .route('/')
