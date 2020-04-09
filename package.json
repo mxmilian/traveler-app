@@ -23,6 +23,7 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.0.0",
     "express-rate-limit": "^5.1.1",
     "helmet": "^3.21.3",
     "jsonwebtoken": "^8.5.1",
@@ -30,7 +31,8 @@
     "morgan": "^1.9.1",
     "nodemailer": "^6.4.6",
     "slugify": "^1.4.0",
-    "validator": "^13.0.0"
+    "validator": "^13.0.0",
+    "xss-clean": "^0.1.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.3",
