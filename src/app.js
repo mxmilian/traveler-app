@@ -2,10 +2,14 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 
+const { limitReq } = require('./middlewares/appProtect');
+
 const app = express();
-//This allows us to get access to the body from request
+
 app.use(helmet());
 app.use(morgan('dev'));
+app.use('/api', limitReq);
+//This allows us to get access to the body from request
 app.use(express.json());
 
 app.use((req, res, next) => {
