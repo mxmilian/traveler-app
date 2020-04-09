@@ -11,8 +11,11 @@ const {
   signUp,
   login,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  changePassword
 } = require('../controllers/authController');
+
+const { protectRoute } = require('../middlewares/authProtect');
 //one router for each of the resource
 const router = express.Router();
 
@@ -21,6 +24,7 @@ router.post('/signUp', signUp);
 router.post('/login', login);
 router.post('/forgotPassword', forgotPassword);
 router.patch('/resetPassword/:token', resetPassword);
+router.patch('/changePassword', protectRoute, changePassword);
 
 router
   .route('/')

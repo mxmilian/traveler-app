@@ -12,6 +12,18 @@ const signToken = id => {
   });
 };
 
+const createSendToken = (user, statusCode, res) => {
+  const token = signToken(user._id);
+
+  res.status(statusCode).json({
+    status: 'success',
+    data: {
+      token,
+      user
+    }
+  });
+};
+
 //Creating a new user
 const signUp = catchAsync(async (req, res, next) => {
   //const newUser = await User.create(req.body);
@@ -22,15 +34,7 @@ const signUp = catchAsync(async (req, res, next) => {
     confirmPassword: req.body.confirmPassword
   });
 
-  const token = signToken(newUser._id);
-
-  res.status(201).json({
-    status: 'success',
-    data: {
-      token,
-      user: newUser
-    }
-  });
+  createSendToken(newUser, 201, res);
 });
 
 //Request to login user
@@ -47,13 +51,7 @@ const login = catchAsync(async (req, res, next) => {
     return next(new Errors('Email and password are not correct! ☠️', 401));
 
   // 3) Send token to client which req
-  const token = signToken(user._id);
-  res.status(200).json({
-    status: 'success',
-    data: {
-      token
-    }
-  });
+  createSendToken(user, 200, res);
 });
 
 const forgotPassword = catchAsync(async (req, res, next) => {
@@ -96,7 +94,7 @@ const forgotPassword = catchAsync(async (req, res, next) => {
 const resetPassword = catchAsync(async (req, res, next) => {
   const urlToken = req.params.token;
 
-  //Find user by the token and check
+  // 1) Find user by the token and check
   const user = await User.findOne({
     passwordResetToken: crypto
       .createHash('sha256')
@@ -105,31 +103,42 @@ const resetPassword = catchAsync(async (req, res, next) => {
     passwordResetExpires: { $gt: Date.now() }
   });
 
+  // 2) Check if token is right
   if (!user) return next(new Errors('Token is invalid or has expired🙁', 400));
 
+  // 3) Change the password
   user.password = req.body.password;
   user.confirmPassword = req.body.confirmPassword;
-  //Deleting pass token and expires
+
+  // 4) Delete pass token and expires and save
   user.passwordResetToken = undefined;
   user.passwordResetExpires = undefined;
-  console.log(user);
   await user.save();
 
-  console.log('xd');
-  const token = signToken(user._id);
+  createSendToken(user, 200, res);
+});
 
-  res.status(200).json({
-    status: 'success',
-    data: {
-      user,
-      token
-    }
-  });
+const changePassword = catchAsync(async (req, res, next) => {
+  // 1) Get user
+  const user = await User.findById(req.user.id).select('+password');
+
+  // 2) Check if posted password is correct
+  if (!(await bcrypt.compare(req.body.currentPassword, user.password)))
+    return next(new Errors('This password is not correct'));
+
+  // 3) Update password
+  user.password = req.body.password;
+  user.confirmPassword = req.body.confirmPassword;
+  await user.save();
+
+  // 4) Log user in, send JWT
+  createSendToken(user, 200, res);
 });
 
 module.exports = {
   signUp,
   login,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  changePassword
 };
