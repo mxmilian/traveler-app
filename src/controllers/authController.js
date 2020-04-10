@@ -44,7 +44,52 @@ const signUp = catchAsync(async (req, res, next) => {
     confirmPassword: req.body.confirmPassword
   });
 
-  createSendToken(newUser, 201, res);
+  const activateToken = newUser.createActivateToken();
+  await newUser.save({ validateBeforeSave: false });
+
+  try {
+    const activateUrl = `${req.protocol}://${req.get(
+      'host'
+    )}/api/v1/users/activateAccount/${activateToken}`;
+    await sendEmail({
+      email: newUser.email,
+      subject: 'Activate account',
+      message: `Activate your account by clicking here ${activateUrl}.`
+    });
+    console.log(activateUrl);
+    res.status(201).json({
+      status: 'success',
+      data: {
+        message: 'Account created, please confirm your e-mail!📧'
+      }
+    });
+  } catch (e) {
+    await newUser.delete();
+    return next(
+      new Errors('Cannot send a message right now, please try again later!😢'),
+      404
+    );
+  }
+});
+
+const activateAccount = catchAsync(async (req, res, next) => {
+  const urlToken = req.params.token;
+
+  // 1) Find user by the token and check
+  const user = await User.findOne({
+    activateToken: crypto
+      .createHash('sha256')
+      .update(urlToken)
+      .digest('hex')
+  });
+  if (!user) return next(new Errors('Token is invalid 🙁', 400));
+
+  user.active = true;
+  user.activateToken = undefined;
+
+  await user.save({ validateBeforeSave: false });
+
+  createSendToken(user, 201, res);
 });
 
 //Request to login user
@@ -147,6 +192,7 @@ const changePassword = catchAsync(async (req, res, next) => {
 
 module.exports = {
   signUp,
+  activateAccount,
   login,
   forgotPassword,
   resetPassword,

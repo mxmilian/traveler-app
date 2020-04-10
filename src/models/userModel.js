@@ -55,12 +55,13 @@ const userSchema = new mongoose.Schema({
       message: 'These passwords are not the same👿'
     }
   },
+  activateToken: String,
   passwordChangedAt: Date,
   passwordResetToken: String,
   passwordResetExpires: Date,
   active: {
     type: Boolean,
-    default: true,
+    default: false,
     select: false
   }
 });
@@ -79,10 +80,19 @@ userSchema.pre('save', function(next) {
   next();
 });
 
-userSchema.pre(/^find/, function(next) {
-  this.find({ active: { $ne: false } });
-  next();
-});
+// userSchema.pre(/^find/, function(next) {
+//   if (!this.new) this.find({ active: { $ne: false } });
+//   next();
+// });
+
+userSchema.methods.createActivateToken = function() {
+  const activateToken = crypto.randomBytes(32).toString('hex');
+  this.activateToken = crypto
+    .createHash('sha256')
+    .update(activateToken)
+    .digest('hex');
+  return activateToken;
+};
 
 userSchema.methods.createPassResToken = function() {
   const resetToken = crypto.randomBytes(32).toString('hex');
@@ -90,8 +100,6 @@ userSchema.methods.createPassResToken = function() {
     .createHash('sha256')
     .update(resetToken)
     .digest('hex');
-
-  console.log(`reset token${resetToken} hashes${this.passwordResetToken}`);
 
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
 

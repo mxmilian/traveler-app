@@ -11,6 +11,7 @@ const {
 
 const {
   signUp,
+  activateAccount,
   login,
   forgotPassword,
   resetPassword,
@@ -23,6 +24,7 @@ const router = express.Router();
 
 //Mounting a new router on route
 router.post('/signUp', signUp);
+router.patch('/activateAccount/:token', activateAccount);
 router.post('/login', login);
 
 router.post('/forgotPassword', forgotPassword);
