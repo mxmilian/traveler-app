@@ -16,7 +16,6 @@ const getAllTours = catchAsync(async (req, res, next) => {
   const { mongooseQuery } = new APIqueryFeatures(Tour.find(), req.query)
     .filter()
     .sort()
-    .fields()
     .pagination();
   const tours = await mongooseQuery;
 
@@ -30,7 +29,10 @@ const getAllTours = catchAsync(async (req, res, next) => {
 });
 
 const getTour = catchAsync(async (req, res, next) => {
-  const tour = await Tour.findById(req.params.id);
+  const tour = await Tour.findById(req.params.id).populate({
+    path: 'guides',
+    select: '-__v -passwordChangedAt'
+  });
   if (!tour) {
     return next(new Errors(`Not found💥 - ${req.originalUrl}`, 404));
   }
