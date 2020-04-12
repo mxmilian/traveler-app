@@ -9,7 +9,7 @@ const {
 
 const { protectRoute, restrictRoute } = require('../middlewares/authProtect');
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 router
   .route('/')

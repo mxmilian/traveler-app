@@ -31,14 +31,7 @@ router
   .delete(protectRoute, restrictRoute('admins', 'moderators'), deleteTour);
 
 //Nested routers (review)
-const {
-  getReview,
-  postReview,
-  deleteReview
-} = require('../controllers/reviewController');
-
-router
-  .route('/:tourId/reviews')
-  .post(protectRoute, restrictRoute('user'), postReview);
+const reviewRouter = require('./reviewRouts');
+router.use('/:tourId/reviews', reviewRouter);
 
 module.exports = router;
