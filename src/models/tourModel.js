@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
+//const User = require('./userModel');
 
 const tourSchema = new mongoose.Schema(
   {
@@ -98,6 +99,12 @@ const tourSchema = new mongoose.Schema(
         address: String,
         description: String
       }
+    ],
+    guides: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
+      }
     ]
   },
   {
@@ -133,6 +140,13 @@ tourSchema.pre(/^find/, function(next) {
   this.start = Date.now();
   next();
 });
+
+// EMBEDDING GUIDES TO TOURS (DRAWBACKS)
+// tourSchema.pre('save', async function(next) {
+//   const promisesArray = this.guides.map(async id => await User.findById(id));
+//   this.guides = await Promise.all(promisesArray);
+//   next();
+// });
 
 tourSchema.post(/^find/, function(doc, next) {
   console.log(`This query took ${Date.now() - this.start} milliseconds`);
