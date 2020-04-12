@@ -4,6 +4,7 @@ const Errors = require('../errors/errorsClass');
 const catchAsync = require('../errors/catchAsync');
 const User = require('../models/userModel');
 
+//Check if user is logged
 const protectRoute = catchAsync(async (req, res, next) => {
   // 1) Check is token is existing
   let token;
@@ -48,6 +49,7 @@ const protectRoute = catchAsync(async (req, res, next) => {
   next();
 });
 
+//Check if user has specific role
 const restrictRoute = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role))
