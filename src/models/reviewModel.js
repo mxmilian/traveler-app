@@ -14,6 +14,10 @@ const reviewSchema = mongoose.Schema(
       max: [5, 'A tour must have a ratings between 0 - 5!👿'],
       min: [0, 'A tour must have a ratings between 0 - 5!👿']
     },
+    createdAt: {
+      type: Date,
+      default: Date.now()
+    },
     tour: {
       type: mongoose.Schema.ObjectId,
       ref: 'Tour',
@@ -26,13 +30,18 @@ const reviewSchema = mongoose.Schema(
     }
   },
   {
-    timestamp: true
-  },
-  {
     toJSON: { virtuals: true },
     toObject: { virtuals: true }
   }
 );
+
+reviewSchema.pre(/^find/, function(next) {
+  this.populate({
+    path: 'user',
+    select: 'name photo'
+  });
+  next();
+});
 
 const Review = mongoose.model('Review', reviewSchema);
 
