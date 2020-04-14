@@ -17,7 +17,6 @@ const aliasTopTours = (req, res, next) => {
 };
 
 //Routes handlers
-
 const readAllTours = readAll(Tour);
 const readTour = readOne(Tour, {
   path: 'reviews'

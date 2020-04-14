@@ -3,6 +3,7 @@ const {
   readAllUsers,
   readUser,
   createUser,
+  readMe,
   updateMe,
   deleteMe,
   updateUser,
@@ -34,6 +35,7 @@ router.patch('/changePassword', protectRoute, changePassword);
 
 router.patch('/updateMe', protectRoute, updateMe);
 router.delete('/deleteMe', protectRoute, deleteMe);
+router.get('/me', protectRoute, readMe, readUser);
 
 router
   .route('/')
