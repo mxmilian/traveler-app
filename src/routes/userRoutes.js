@@ -19,7 +19,7 @@ const {
   changePassword
 } = require('../controllers/authController');
 
-const { protectRoute } = require('../middlewares/authProtect');
+const { protectRoute, restrictRoute } = require('../middlewares/authProtect');
 //one router for each of the resource
 const router = express.Router();
 
@@ -27,15 +27,17 @@ const router = express.Router();
 router.post('/signUp', signUp);
 router.patch('/activateAccount/:token', activateAccount);
 router.post('/login', login);
-
 router.post('/forgotPassword', forgotPassword);
 router.patch('/resetPassword/:token', resetPassword);
 
-router.patch('/changePassword', protectRoute, changePassword);
+router.use(protectRoute);
 
-router.patch('/updateMe', protectRoute, updateMe);
-router.delete('/deleteMe', protectRoute, deleteMe);
-router.get('/me', protectRoute, readMe, readUser);
+router.patch('/changePassword', changePassword);
+router.patch('/updateMe', updateMe);
+router.delete('/deleteMe', deleteMe);
+router.get('/me', readMe, readUser);
+
+router.use(restrictRoute('admin'));
 
 router
   .route('/')

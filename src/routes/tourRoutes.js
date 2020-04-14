@@ -17,17 +17,23 @@ const router = express.Router();
 
 //Mounting a new router on route
 router.route('/top5').get(aliasTopTours, readAllTours);
-router.route('/monthlyPlan/:year').get(getMonthlyPlan);
+router
+  .route('/monthlyPlan/:year')
+  .get(
+    protectRoute,
+    restrictRoute('guide', 'moderator', 'admin'),
+    getMonthlyPlan
+  );
 
 router
   .route('/')
-  .get(protectRoute, readAllTours)
-  .post(createTour);
+  .get(readAllTours)
+  .post(protectRoute, restrictRoute('admin', 'moderator'), createTour);
 
 router
   .route('/:id')
   .get(readTour)
-  .patch(updateTour)
+  .patch(protectRoute, restrictRoute('admin', 'moderator'), updateTour)
   .delete(protectRoute, restrictRoute('admin', 'moderator'), deleteTour);
 
 //Nested routers (review)
