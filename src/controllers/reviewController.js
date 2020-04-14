@@ -1,7 +1,7 @@
 const Review = require('../models/reviewModel');
 const catchAsync = require('../errors/catchAsync');
 
-const { createOne, updateOne, deleteOne } = require('./handlerFactory');
+const { createOne, updateOne, deleteOne } = require('./crudFactory');
 
 const getAllReview = catchAsync(async (req, res, next) => {
   //Nested routes

@@ -1,7 +1,7 @@
 const User = require('../models/userModel');
 const Errors = require('../errors/errorsClass');
 const catchAsync = require('../errors/catchAsync');
-const { createOne, updateOne, deleteOne } = require('./handlerFactory');
+const { createOne, updateOne, deleteOne } = require('./crudFactory');
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};

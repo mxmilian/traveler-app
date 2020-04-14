@@ -3,7 +3,7 @@ const APIqueryFeatures = require('../utils/apiQueryFeatures');
 const catchAsync = require('../errors/catchAsync');
 const Errors = require('../errors/errorsClass');
 
-const { createOne, updateOne, deleteOne } = require('./handlerFactory');
+const { createOne, updateOne, deleteOne } = require('./crudFactory');
 
 const aliasTopTours = (req, res, next) => {
   req.query.limit = '5';
