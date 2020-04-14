@@ -1,7 +1,7 @@
 const express = require('express');
 const {
-  getAllUsers,
-  getUser,
+  readAllUsers,
+  readUser,
   createUser,
   updateMe,
   deleteMe,
@@ -37,12 +37,12 @@ router.delete('/deleteMe', protectRoute, deleteMe);
 
 router
   .route('/')
-  .get(getAllUsers)
+  .get(readAllUsers)
   .post(createUser);
 
 router
   .route('/:id')
-  .get(getUser)
+  .get(readUser)
   .patch(updateUser)
   .delete(deleteUser);
 

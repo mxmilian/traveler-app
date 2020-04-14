@@ -1,7 +1,7 @@
 const User = require('../models/userModel');
 const Errors = require('../errors/errorsClass');
 const catchAsync = require('../errors/catchAsync');
-const { createOne, updateOne, deleteOne } = require('./crudFactory');
+const { createOne, readAll, readOne, updateOne, deleteOne } = require('./crudFactory');
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -12,23 +12,8 @@ const filterObj = (obj, ...allowedFields) => {
 };
 
 //Routes handlers
-const getAllUsers = catchAsync(async (req, res, next) => {
-  const users = await User.find();
-
-  res.status(200).json({
-    status: 'access',
-    data: {
-      users
-    }
-  });
-});
-
-const getUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This rout is not implemented yet!'
-  });
-};
+const readAllUsers = readAll(User);
+const readUser = readOne(User);
 
 const updateMe = catchAsync(async (req, res, next) => {
   // 1) Check if user is trying to update password here
@@ -76,8 +61,8 @@ const updateUser = updateOne(User);
 const deleteUser = deleteOne(User);
 
 module.exports = {
-  getAllUsers,
-  getUser,
+  readAllUsers,
+  readUser,
   updateMe,
   deleteMe,
   createUser,

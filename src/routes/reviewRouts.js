@@ -1,8 +1,8 @@
 const express = require('express');
 
 const {
-  getAllReview,
-  getReview,
+  readAllReview,
+  readReview,
   createReview,
   setReviewParam,
   updateReview,
@@ -15,12 +15,12 @@ const router = express.Router({ mergeParams: true });
 
 router
   .route('/')
-  .get(getAllReview)
+  .get(readAllReview)
   .post(protectRoute, restrictRoute('user'), setReviewParam, createReview);
 
 router
   .route('/:id')
-  .get(getReview)
+  .get(readReview)
   .patch(updateReview)
   .delete(deleteReview);
 
