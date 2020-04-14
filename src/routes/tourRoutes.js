@@ -28,7 +28,7 @@ router
   .route('/:id')
   .get(getTour)
   .patch(updateTour)
-  .delete(protectRoute, restrictRoute('admins', 'moderators'), deleteTour);
+  .delete(protectRoute, restrictRoute('admin', 'moderator'), deleteTour);
 
 //Nested routers (review)
 const reviewRouter = require('./reviewRouts');

@@ -3,6 +3,8 @@ const APIqueryFeatures = require('../utils/apiQueryFeatures');
 const catchAsync = require('../errors/catchAsync');
 const Errors = require('../errors/errorsClass');
 
+const { createOne, updateOne, deleteOne } = require('./handlerFactory');
+
 const aliasTopTours = (req, res, next) => {
   req.query.limit = '5';
   req.query.sort = '-ratingsAverage,price';
@@ -46,43 +48,9 @@ const getTour = catchAsync(async (req, res, next) => {
   });
 });
 
-const createTour = catchAsync(async (req, res, next) => {
-  const newTour = await Tour.create(req.body);
-  res.status(201).json({
-    status: 'success',
-    data: {
-      newTour
-    }
-  });
-});
-
-const updateTour = catchAsync(async (req, res, next) => {
-  const updatedTour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true
-  });
-  res.status(200).json({
-    status: 'success',
-    data: {
-      updatedTour
-    }
-  });
-});
-
-const deleteTour = catchAsync(async (req, res, next) => {
-  const deletedTour = await Tour.findByIdAndDelete(req.params.id);
-  if (!deletedTour) {
-    return next(
-      new Errors(`Cannot delete non-existent item💥 - ${req.originalUrl}`, 400)
-    );
-  }
-  res.status(200).json({
-    status: 'success',
-    data: {
-      deletedTour
-    }
-  });
-});
+const createTour = createOne(Tour);
+const updateTour = updateOne(Tour);
+const deleteTour = deleteOne(Tour);
 
 const getMonthlyPlan = catchAsync(async (req, res, next) => {
   const year = Number(req.params.year);

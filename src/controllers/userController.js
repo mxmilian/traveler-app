@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const Errors = require('../errors/errorsClass');
 const catchAsync = require('../errors/catchAsync');
+const { createOne, updateOne, deleteOne } = require('./handlerFactory');
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -29,13 +30,6 @@ const getUser = (req, res) => {
   });
 };
 
-const createUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This rout is not implemented yet!'
-  });
-};
-
 const updateMe = catchAsync(async (req, res, next) => {
   // 1) Check if user is trying to update password here
   if (req.body.password || req.body.confirmPassword)
@@ -43,8 +37,6 @@ const updateMe = catchAsync(async (req, res, next) => {
 
   // 3) Filter req
   const filterReq = filterObj(req.body, 'name', 'email');
-
-  console.log(filterReq);
 
   // 2) Update user
   const user = await User.findByIdAndUpdate(
@@ -78,25 +70,17 @@ const deleteMe = catchAsync(async (req, res, next) => {
   });
 });
 
-const updateUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This rout is not implemented yet!'
-  });
-};
-const deleteUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This rout is not implemented yet!'
-  });
-};
+//Controllers just for administrator
+const createUser = createOne(User);
+const updateUser = updateOne(User);
+const deleteUser = deleteOne(User);
 
 module.exports = {
   getAllUsers,
   getUser,
-  createUser,
   updateMe,
   deleteMe,
+  createUser,
   updateUser,
   deleteUser
 };
