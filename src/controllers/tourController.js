@@ -1,4 +1,5 @@
 const Tour = require('../models/tourModel');
+const Errors = require('../errors/errorsClass');
 const catchAsync = require('../errors/catchAsync');
 
 const {
@@ -17,6 +18,29 @@ const aliasTopTours = (req, res, next) => {
 };
 
 //Routes handlers
+const getToursWithin = catchAsync(async (req, res, next) => {
+  //router.route('/tours-within/:distance/center/:latlng/unit/:unit', getToursWithing);
+  const { distance, latlng, unit } = req.params;
+  const [lat, lng] = latlng.split(',');
+
+  const radius = unit === 'mi' ? distance / 3063.2 : distance / 6378.1;
+
+  if (!lat || !lng)
+    next(new Errors('Not founded latitude or longitude! 🙅‍', 400));
+
+  const tours = await Tour.find({
+    startLocation: { $geoWithin: { $centerSphere: [[lng, lat], radius] } }
+  });
+
+  res.status(200).json({
+    status: 'success',
+    results: tours.length,
+    data: {
+      tours
+    }
+  });
+});
+
 const readAllTours = readAll(Tour);
 const readTour = readOne(Tour, {
   path: 'reviews'
@@ -72,5 +96,6 @@ module.exports = {
   updateTour,
   deleteTour,
   aliasTopTours,
-  getMonthlyPlan
+  getMonthlyPlan,
+  getToursWithin
 };

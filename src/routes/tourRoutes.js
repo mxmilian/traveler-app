@@ -7,7 +7,8 @@ const {
   updateTour,
   deleteTour,
   aliasTopTours,
-  getMonthlyPlan
+  getMonthlyPlan,
+  getToursWithin
 } = require('../controllers/tourController');
 
 const { protectRoute, restrictRoute } = require('../middlewares/authProtect');
@@ -24,6 +25,10 @@ router
     restrictRoute('guide', 'moderator', 'admin'),
     getMonthlyPlan
   );
+
+router
+  .route('/tours-within/:distance/center/:latlng/unit/:unit')
+  .get(getToursWithin);
 
 router
   .route('/')
