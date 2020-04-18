@@ -1,16 +1,22 @@
+//Abstracts
 @import "abstract/functions";
 @import "abstract/mixins";
 @import "abstract/variables";
 
+//Bases
 @import "base/base";
 @import "base/animations";
 @import "base/typography";
 @import "base/utilities";
 
+//Components
 @import "components/button";
 @import "components/header";
 @import "components/composition";
+@import "components/feature-box";
 
+//Layouts
 @import "layout/grid";
 
+//Pages
 @import "pages/home";

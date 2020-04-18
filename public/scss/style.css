@@ -252,6 +252,28 @@ body {
   transform: scale(0.95);
 }
 
+.feature-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 1.5rem;
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  transition: all 0.2s;
+}
+.feature-box__icon {
+  font-size: 6rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  background-image: linear-gradient(to right, #4fdbff, #286e80);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.feature-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
 .row {
   max-width: 114rem;
   margin: 0 auto;
@@ -293,6 +315,16 @@ body {
   background-color: #f5f5f5;
   padding: 25rem 0;
   margin-top: -20vh;
+}
+
+.section-feature {
+  padding: 20rem 0;
+  background-image: linear-gradient(to bottom, rgba(59, 164, 191, 0.2), rgba(79, 219, 255, 0.8)), url("../images/header-background.jpg");
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  top: -15rem;
+  clip-path: polygon(0 18%, 16% 9%, 37% 13%, 56% 6%, 81% 11%, 100% 0, 100% 79%, 84% 87%, 62% 84%, 43% 91%, 19% 92%, 0 100%);
 }
 
 /*# sourceMappingURL=style.css.map */
