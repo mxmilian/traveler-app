@@ -4,10 +4,15 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const path = require('path');
 
 const { limitReq } = require('./middlewares/appProtect');
 
 const app = express();
+
+//Set the server-side rendering engine
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
 
 // Set security headers
 app.use(helmet());
@@ -40,6 +45,8 @@ app.use(
   })
 );
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use((req, res, next) => {
   console.clear();
   console.log(`I'am really happy that you use my app!💜`);
@@ -51,6 +58,12 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRouts');
 
 //connection router with the app via middleware
+//VIEWS ROUTES
+app.get('/', (req, res) => {
+  res.status(200).render('base');
+});
+
+//API ROUTES
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
