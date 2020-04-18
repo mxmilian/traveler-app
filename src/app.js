@@ -13,6 +13,7 @@ const app = express();
 //Set the server-side rendering engine
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Set security headers
 app.use(helmet());
@@ -45,8 +46,6 @@ app.use(
   })
 );
 
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.use((req, res, next) => {
   console.clear();
   console.log(`I'am really happy that you use my app!💜`);
@@ -60,7 +59,10 @@ const reviewRouter = require('./routes/reviewRouts');
 //connection router with the app via middleware
 //VIEWS ROUTES
 app.get('/', (req, res) => {
-  res.status(200).render('base');
+  res.status(200).render('base', {
+    tour: 'Siemanko',
+    user: 'Max'
+  });
 });
 
 //API ROUTES

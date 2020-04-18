@@ -1,1 +1,38 @@
-h1 Hello world!
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        link(href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet')
+        link(rel='stylesheet' href='./scss/style.css')
+        link(rel='shortcut icon' type='image/png' href='images/favicon.svg')
+        title Traveler
+    body
+        header.header
+            div.header__logo-box
+                img(src='images/mountains.svg' alt='Traveler logo' class='header__logo')
+            div.header__text-box
+                h1.heading-primary
+                    span.heading-primary--main Traveler
+                    span.heading-primary--sub your adventure just has begun
+                a(href='#').btn.btn--white.btn--animate Start your adventure!
+        main
+            section.section-about
+                div.u-center-text.u-margin-bottom-big
+                    h2.heading-secondary Lorem ipsum dolor
+                div.row
+                    div.col-1-of-2
+                        h3.heading-tertiary.u-margin-bottom-small Lorem ipsum dolor sit amet.
+                        p.paragraph
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime? Lorem ipsum dolor sit amet,
+                            consectetur adipisicing elit. Molestias, ullam.
+                        h3.heading-tertiary.u-margin-bottom-small Lorem ipsum dolor sit amet
+                        p.paragraph
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime? Lorem ipsum dolor sit amet,
+                            consectetur adipisicing elit. Molestias, ullam.
+                        a(href='#').btn-text Lorem ipsum
+                    div.col-1-of-2
+                        div.composition
+                            img(src='./images/mountain-1.jpg' alt='mountain-1').composition__photo.composition__photo--p1
+                            img(src='./images/mountain-2.jpg' alt='mountain-2').composition__photo.composition__photo--p2
+                            img(src='./images/mountain-3.jpg' alt='mountain-3').composition__photo.composition__photo--p3
