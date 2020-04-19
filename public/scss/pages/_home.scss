@@ -13,4 +13,9 @@
   position: relative;
   top: -15rem;
 
-  clip-path: polygon(0 18%, 16% 9%, 37% 13%, 56% 6%, 81% 11%, 100% 0, 100% 79%, 84% 87%, 62% 84%, 43% 91%, 19% 92%, 0 100%);}
+  clip-path: polygon(0 20%, 50% 0%, 100% 20%, 100% 0, 100% 100%, 50% 80%, 0 100%);
+}
+
+.section-tours {
+  background-color: $page-background;
+}

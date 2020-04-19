@@ -274,6 +274,47 @@ body {
   box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+.card {
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  height: 50rem;
+}
+.card__side {
+  height: 50rem;
+  transition: all 0.8s ease;
+  color: white;
+  font-size: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backface-visibility: hidden;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+}
+.card__side--front {
+  background-color: orangered;
+}
+.card__side--back {
+  transform: rotateY(180deg);
+}
+.card__side--back-first {
+  background-image: linear-gradient(to right bottom, #4fdbff, #3ba4bf);
+}
+.card__side--back-second {
+  background-image: linear-gradient(to right bottom, #4fdbff, #FCF59D);
+}
+.card__side--back-third {
+  background-image: linear-gradient(to right bottom, #4fdbff, #00A76A);
+}
+.card:hover .card__side--front {
+  transform: rotateY(180deg);
+}
+.card:hover .card__side--back {
+  transform: rotateY(0);
+}
+
 .row {
   max-width: 114rem;
   margin: 0 auto;
@@ -324,7 +365,11 @@ body {
   background-position: top;
   position: relative;
   top: -15rem;
-  clip-path: polygon(0 18%, 16% 9%, 37% 13%, 56% 6%, 81% 11%, 100% 0, 100% 79%, 84% 87%, 62% 84%, 43% 91%, 19% 92%, 0 100%);
+  clip-path: polygon(0 20%, 50% 0%, 100% 20%, 100% 0, 100% 100%, 50% 80%, 0 100%);
+}
+
+.section-tours {
+  background-color: #f5f5f5;
 }
 
 /*# sourceMappingURL=style.css.map */
