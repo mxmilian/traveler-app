@@ -197,11 +197,12 @@ body {
 
 .header {
   height: 95vh;
-  background-image: linear-gradient(to bottom, rgba(59, 164, 191, 0.2), rgba(79, 219, 255, 0.8)), url("../images/header-background.jpg");
+  background-image: linear-gradient(to bottom, rgba(59, 164, 191, 0.2), rgba(79, 219, 255, 0.8)), url("../../images/header-background.jpg");
   background-size: cover;
   background-position: top;
   position: relative;
   /* clip-path: polygon(50% 0, 0 100%, 25% 69%, 50% 15%, 65% 50%, 50% 50%, 18% 71%, 0 100%, 100% 100%, 50% 0); */
+  -webkit-clip-path: polygon(100% 0, 100% 79%, 84% 87%, 62% 84%, 43% 91%, 19% 92%, 0 100%, 0 0);
   clip-path: polygon(100% 0, 100% 79%, 84% 87%, 62% 84%, 43% 91%, 19% 92%, 0 100%, 0 0);
 }
 .header__logo-box {
@@ -283,21 +284,20 @@ body {
 .card__side {
   height: 50rem;
   transition: all 0.8s ease;
-  color: white;
-  font-size: 2rem;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   backface-visibility: hidden;
-  border-radius: 3px;
+  border-radius: 2rem;
+  overflow: hidden;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
 }
 .card__side--front {
-  background-color: orangered;
+  background-color: white;
 }
 .card__side--back {
-  transform: rotateY(180deg);
+  transform: rotateY(-180deg);
 }
 .card__side--back-first {
   background-image: linear-gradient(to right bottom, #4fdbff, #3ba4bf);
@@ -313,6 +313,51 @@ body {
 }
 .card:hover .card__side--back {
   transform: rotateY(0);
+}
+.card__picture {
+  background-size: cover;
+  background-position: top;
+  height: 25rem;
+  background-blend-mode: soft-light;
+  -webkit-clip-path: ellipse(75% 50% at 50% 35%);
+  clip-path: ellipse(75% 50% at 50% 35%);
+}
+.card__picture--first {
+  background-image: linear-gradient(to right bottom, #4fdbff, #3ba4bf), url("../../images/header-background.jpg");
+}
+.card__heading {
+  font-size: 2.8rem;
+  color: #fff;
+  font-weight: 300;
+  text-align: right;
+  position: absolute;
+  top: 13.5rem;
+  right: 2rem;
+  width: 75%;
+}
+.card__heading-span {
+  padding: 1rem 1.5rem;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.card__heading-span--first {
+  background-image: linear-gradient(to right bottom, rgba(79, 219, 255, 0.95), rgba(20, 55, 64, 0.95));
+}
+.card__details {
+  padding: 3rem;
+}
+.card__details ul {
+  list-style: none;
+  width: 80%;
+  margin: 0 auto;
+}
+.card__details ul li {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+.card__details ul li:not(:last-child) {
+  border-bottom: 1px solid #eee;
 }
 
 .row {
@@ -361,7 +406,7 @@ body {
 .section-feature {
   padding: 20rem 0 30rem 0;
   background-color: #f5f5f5;
-  background-image: linear-gradient(to bottom, rgba(59, 164, 191, 0.2), rgba(79, 219, 255, 0.8)), url("../images/mountain-feature.jpg");
+  background-image: linear-gradient(to bottom, rgba(59, 164, 191, 0.2), rgba(79, 219, 255, 0.8)), url("../../images/mountain-feature.jpg");
   background-size: cover;
   background-position: center;
   position: relative;
