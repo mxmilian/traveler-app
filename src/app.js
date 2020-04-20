@@ -59,7 +59,7 @@ const reviewRouter = require('./routes/reviewRouts');
 //connection router with the app via middleware
 //VIEWS ROUTES
 app.get('/', (req, res) => {
-  res.status(200).render('base', {
+  res.status(200).render('home', {
     tour: 'Siemanko',
     user: 'Max'
   });
