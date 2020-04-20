@@ -1,14 +1,13 @@
 .btn {
-
   &:link,
   &:visited {
     text-transform: uppercase;
     text-decoration: none;
     padding: 15px 40px;
     display: inline-block;
-    border-radius: 500px 500px 50px 50px;
     transition: all 0.2s;
     position: relative;
+    box-shadow: 1px 4px 8px rgba($shadow, 0.1);
   }
 
   &:hover {
@@ -31,7 +30,6 @@
     display: inline-block;
     height: 100%;
     width: 100%;
-    border-radius: 500px 500px 50px 50px;
     position: absolute;
     top: 0;
     left: 0;
@@ -48,11 +46,40 @@
     }
   }
 
+  &--blue {
+    background-color: rgba($lightness_primary, 0.95);
+    color: $white;
+
+    &::after {
+      background-color: rgba($lightness_primary, 0.95);
+    }
+  }
+
+  &--header {
+    border-radius: 500px 500px 50px 50px;
+
+    &::after {
+      border-radius: 500px 500px 50px 50px;
+    }
+  }
+
+  &--card {
+    border-radius: 500px;
+
+    &::after {
+      border-radius: 500px;
+    }
+  }
+
+
+
   &--animate {
     animation: showBtn 0.5s ease-out 0.75s;
     animation-fill-mode: backwards;
   }
 }
+
+
 
 .btn-text {
   &:link,

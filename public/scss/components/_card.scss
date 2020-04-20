@@ -81,7 +81,7 @@
   }
 
   &__details{
-    padding: 3rem;
+    padding: 2rem;
     ul {
       list-style: none;
       width: 80%;
@@ -89,7 +89,7 @@
 
       li {
         text-align: center;
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         padding: 1rem;
 
         &:not(:last-child) {
@@ -97,5 +97,31 @@
         }
       }
     }
+  }
+
+  //Back style
+
+  &__cta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    text-align: center;
+  }
+
+  &__price-box {
+    color: $white;
+    margin-bottom: 8rem;
+  }
+
+  &__price-only {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  &__price-value {
+    font-size: 6rem;
+    font-weight: 100;
   }
 }

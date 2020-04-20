@@ -128,14 +128,18 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.u-margin-top-big {
+  margin-top: 8rem;
+}
+
 .btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
   padding: 15px 40px;
   display: inline-block;
-  border-radius: 500px 500px 50px 50px;
   transition: all 0.2s;
   position: relative;
+  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.1);
 }
 .btn:hover {
   transform: translateY(-3px);
@@ -154,7 +158,6 @@ body {
   display: inline-block;
   height: 100%;
   width: 100%;
-  border-radius: 500px 500px 50px 50px;
   position: absolute;
   top: 0;
   left: 0;
@@ -167,6 +170,25 @@ body {
 }
 .btn--white::after {
   background-color: #fff;
+}
+.btn--blue {
+  background-color: rgba(79, 219, 255, 0.95);
+  color: #fff;
+}
+.btn--blue::after {
+  background-color: rgba(79, 219, 255, 0.95);
+}
+.btn--header {
+  border-radius: 500px 500px 50px 50px;
+}
+.btn--header::after {
+  border-radius: 500px 500px 50px 50px;
+}
+.btn--card {
+  border-radius: 500px;
+}
+.btn--card::after {
+  border-radius: 500px;
 }
 .btn--animate {
   animation: showBtn 0.5s ease-out 0.75s;
@@ -344,7 +366,7 @@ body {
   background-image: linear-gradient(to right bottom, rgba(79, 219, 255, 0.95), rgba(20, 55, 64, 0.95));
 }
 .card__details {
-  padding: 3rem;
+  padding: 2rem;
 }
 .card__details ul {
   list-style: none;
@@ -353,11 +375,31 @@ body {
 }
 .card__details ul li {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   padding: 1rem;
 }
 .card__details ul li:not(:last-child) {
   border-bottom: 1px solid #eee;
+}
+.card__cta {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  text-align: center;
+}
+.card__price-box {
+  color: #fff;
+  margin-bottom: 8rem;
+}
+.card__price-only {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+.card__price-value {
+  font-size: 6rem;
+  font-weight: 100;
 }
 
 .row {
