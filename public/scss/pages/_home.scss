@@ -11,6 +11,7 @@
   url('../../images/mountain-feature.jpg');
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   position: relative;
   top: -17rem;
   clip-path: polygon(0 20%, 50% 0%, 100% 20%, 100% 0, 100% 100%, 50% 80%, 0 100%);
@@ -18,6 +19,11 @@
 
 .section-tours {
   background-color: $page-background;
-  padding: 20rem 0;
+  padding: 20rem 0 10rem 0;
   margin-top: -40rem;
+}
+
+.section-opinion {
+  //padding: 15rem 0;
+  background-color: $page-background;
 }
