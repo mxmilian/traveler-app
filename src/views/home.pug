@@ -155,14 +155,20 @@ html(lang='en')
                                         | Book now!
                 div.u-center-text.u-margin-top-big
                     a(href='#').btn.btn--card.btn--blue
-                        |Discover all tours
+                        | Discover all tours
             section.section-opinion
+                div.background-video
+                    video(autoplay muted loop).background-video__content
+                        source(src='./videos/background-video.mp4' type='video/mp4')
+                        | Your browser is not supported!
                 div.u-center-text.u-margin-bottom-big
                     h2.heading-secondary Lorem ipsum dolor
                 div.row
                     div.opinion
                         figure.opinion__shape
                             img(src='./images/mountain-3.jpg' alt='Lorem ipsum!').opinion__image
+                            figcaption.opinion__caption
+                             | Name Surname
                         div.opinion__text
                             h3.heading-tertiary.u-margin-bottom-small
                                 | Lorem ipsum dolor sit amet.
