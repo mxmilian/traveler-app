@@ -164,19 +164,58 @@ html(lang='en')
                 div.u-center-text.u-margin-bottom-big
                     h2.heading-secondary Lorem ipsum dolor
                 div.row
-                    div.opinion
-                        figure.opinion__shape
-                            img(src='./images/mountain-3.jpg' alt='Lorem ipsum!').opinion__image
-                            figcaption.opinion__caption
-                             | Name Surname
-                        div.opinion__text
-                            h3.heading-tertiary.u-margin-bottom-small
-                                | Lorem ipsum dolor sit amet.
-                            p.opinion-box__text
-                                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime?
-                                | Loremipsum dolor sit amet,consectetur adipisicing elit. Molestias, ullam.
-                                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime?
-                                | Loremipsum dolor sit amet,consectetur adipisicing elit. Molestias, ullam.
+                    div.glide
+                        div(data-glide-el="track").glide__track
+                            ul.glide__slides
+                                li.glide__slide
+                                    div.opinion
+                                        figure.opinion__shape
+                                            img(src='./images/mountain-1.jpg' alt='Lorem ipsum!').opinion__image
+                                            figcaption.opinion__caption
+                                                | Name Surname
+                                        div.opinion__text
+                                            h3.heading-tertiary.u-margin-bottom-small
+                                                | Lorem ipsum dolor sit amet.
+                                            p.opinion-box__text
+                                                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime?
+                                                | Loremipsum dolor sit amet,consectetur adipisicing elit. Molestias, ullam.
+                                                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime?
+                                                | Loremipsum dolor sit amet,consectetur adipisicing elit. Molestias, ullam.
+                                li.glide__slide
+                                    div.opinion
+                                        figure.opinion__shape
+                                            img(src='./images/mountain-2.jpg' alt='Lorem ipsum!').opinion__image
+                                            figcaption.opinion__caption
+                                                | Name Surname
+                                        div.opinion__text
+                                            h3.heading-tertiary.u-margin-bottom-small
+                                                | Lorem ipsum dolor sit amet.
+                                            p.opinion-box__text
+                                                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime?
+                                                | Loremipsum dolor sit amet,consectetur adipisicing elit. Molestias, ullam.
+                                                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime?
+                                                | Loremipsum dolor sit amet,consectetur adipisicing elit. Molestias, ullam.
+                                li.glide__slide
+                                    div.opinion
+                                        figure.opinion__shape
+                                            img(src='./images/mountain-3.jpg' alt='Lorem ipsum!').opinion__image
+                                            figcaption.opinion__caption
+                                                | Name Surname
+                                        div.opinion__text
+                                            h3.heading-tertiary.u-margin-bottom-small
+                                                | Lorem ipsum dolor sit amet.
+                                            p.opinion-box__text
+                                                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime?
+                                                | Loremipsum dolor sit amet,consectetur adipisicing elit. Molestias, ullam.
+                                                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime?
+                                                | Loremipsum dolor sit amet,consectetur adipisicing elit. Molestias, ullam.
+                        <div class="glide__bullets u-margin-top-big" data-glide-el="controls[nav]">
+                        <button class="glide__bullet" data-glide-dir="=0"></button>
+                        <button class="glide__bullet" data-glide-dir="=1"></button>
+                        <button class="glide__bullet" data-glide-dir="=2"></button>
+                        </div>
+
                     div.u.u-center-text
                         a(href='#').btn-text.u-margin-top-big
                             | Lorem ipsum
+        script(src="./js/script.js")
