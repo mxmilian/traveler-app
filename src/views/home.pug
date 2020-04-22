@@ -62,89 +62,35 @@ block content
                             | Loremipsum dolor sit amet,consectetur adipisicing elit. Molestias, ullam
         section.section-tours
             div.u-center-text.u-margin-bottom-big
-                h2.heading-secondary Lorem ipsum dolor
+                h2.heading-secondary
+                    | The best tours!
             div.row
-                div.col-1-of-3
-                    div.card
-                        div.card__side.card__side--front
-                            div.card__picture.card__picture--first
-                                |
-                            h4.card__heading
-                                span.card__heading-span.card__heading-span--first
-                                    |heading of the heading
-                            div.card__details
-                                ul
-                                    li
-                                        |some text
-                                    li
-                                        |some text
-                                    li
-                                        |some text
-                                    li
-                                        |some text
-                        div.card__side.card__side--back.card__side--back-first
-                            div.card__cta
-                                div.card__price-box
-                                    p.card__price-only
-                                        |back
-                                    p.card__price-value
-                                        |$999.99
-                                a(href='#').btn.btn--white.btn--card
-                                    |Book now!
-                div.col-1-of-3
-                    div.card
-                        div.card__side.card__side--front
-                            div.card__picture.card__picture--first
-                                |
-                            h4.card__heading
-                                span.card__heading-span.card__heading-span--first
-                                    | heading of the heading
-                            div.card__details
-                                ul
-                                    li
-                                        | some text
-                                    li
-                                        | some text
-                                    li
-                                        | some text
-                                    li
-                                        | some text
-                        div.card__side.card__side--back.card__side--back-first
-                            div.card__cta
-                                div.card__price-box
-                                    p.card__price-only
-                                        | lorem
-                                    p.card__price-value
-                                        | $999.99
-                                a(href='#').btn.btn--white.btn--card
-                                    | Book now!
-                div.col-1-of-3
-                    div.card
-                        div.card__side.card__side--front
-                            div.card__picture.card__picture--first
-                                |
-                            h4.card__heading
-                                span.card__heading-span.card__heading-span--first
-                                    | heading of the heading
-                            div.card__details
-                                ul
-                                    li
-                                        | some text
-                                    li
-                                        | some text
-                                    li
-                                        | some text
-                                    li
-                                        | some text
-                        div.card__side.card__side--back.card__side--back-first
-                            div.card__cta
-                                div.card__price-box
-                                    p.card__price-only
-                                        | back
-                                    p.card__price-value
-                                        | $999.99
-                                a(href='#').btn.btn--white.btn--card
-                                    | Book now!
+                each tour in tours
+                    div.col-1-of-3
+                        div.card
+                            div.card__side.card__side--front
+                                div.card__picture.card__picture--first
+                                h4.card__heading
+                                    span.card__heading-span.card__heading-span--first=tour.name
+                                div.card__details
+                                    ul
+                                        li
+                                            |some text
+                                        li
+                                            |some text
+                                        li
+                                            |some text
+                                        li
+                                            |some text
+                            div.card__side.card__side--back.card__side--back-first
+                                div.card__cta
+                                    div.card__price-box
+                                        p.card__price-only
+                                            |back
+                                        p.card__price-value
+                                            |$999.99
+                                    a(href='#').btn.btn--white.btn--card
+                                        |Book now!
             div.u-center-text.u-margin-top-big
                 a(href='/tours').btn.btn--card.btn--blue
                     | Discover all tours
@@ -211,5 +157,9 @@ block content
             div.u.u-center-text
                 a(href='#').btn-text.u-margin-top-big
                     | Lorem ipsum
+        section.section-book
+            div.row
+                div.book
+
 
     script(src="./js/script.js")

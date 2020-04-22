@@ -18,7 +18,7 @@ const { protectRoute, restrictRoute } = require('../middlewares/authProtect');
 const router = express.Router();
 
 //Mounting a new router on route
-router.route('/top5').get(aliasTopTours, readAllTours);
+router.route('/top3').get(aliasTopTours, readAllTours);
 router
   .route('/monthlyPlan/:year')
   .get(

@@ -11,7 +11,7 @@ const {
 } = require('./crudFactory');
 
 const aliasTopTours = (req, res, next) => {
-  req.query.limit = '5';
+  req.query.limit = '3';
   req.query.sort = '-ratingsAverage,price';
   req.query.fields = 'name,price,ratingsAverage,difficulty,summary';
   next();

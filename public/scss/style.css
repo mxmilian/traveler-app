@@ -366,8 +366,8 @@ body {
   text-align: right;
   position: absolute;
   top: 13.5rem;
-  right: 2rem;
-  width: 75%;
+  right: 2.5rem;
+  width: 65%;
 }
 .card__heading-span {
   padding: 1rem 1.5rem;
@@ -678,6 +678,19 @@ body {
 .section-opinion {
   position: relative;
   padding: 10rem 0;
+}
+
+.section-book {
+  padding: 15rem 0;
+  background-image: linear-gradient(to right bottom, rgba(59, 164, 191, 0.2), rgba(79, 219, 255, 0.8));
+}
+
+.book {
+  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 50%), url("../../images/header-background.jpg");
+  background-size: 100%;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
+  height: 50rem;
 }
 
 /*# sourceMappingURL=style.css.map */
