@@ -2,8 +2,17 @@
 
 const glide = new Glide('.glide', {
   type: 'carousel',
-  perView: 1,
+  perView: 2,
+  breakpoints: {
+    1300: {
+      perView: 1
+    }
+  },
   focusAt: 'center',
+  autoplay: 3500,
+  animationDuration: 600,
+  hoverpause: true,
+  animationTimingFunc: 'cubic-bezier(0,.46,1,.4)'
 });
 
 glide.mount();
