@@ -60,8 +60,13 @@ const reviewRouter = require('./routes/reviewRouts');
 //VIEWS ROUTES
 app.get('/', (req, res) => {
   res.status(200).render('home', {
-    tour: 'Siemanko',
-    user: 'Max'
+    title: 'Welcome page'
+  });
+});
+
+app.get('/tours', (req, res) => {
+  res.status(200).render('tours', {
+    title: 'Find your tour!'
   });
 });
 
