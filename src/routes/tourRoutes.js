@@ -45,7 +45,7 @@ router
   .delete(protectRoute, restrictRoute('admin', 'moderator'), deleteTour);
 
 //Nested routers (review)
-const reviewRouter = require('./reviewRouts');
+const reviewRouter = require('./reviewRoutes');
 router.use('/:tourId/reviews', reviewRouter);
 
 module.exports = router;

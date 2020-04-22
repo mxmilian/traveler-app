@@ -54,21 +54,12 @@ app.use((req, res, next) => {
 
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
-const reviewRouter = require('./routes/reviewRouts');
+const reviewRouter = require('./routes/reviewRoutes');
+const viewRouter = require('./routes/viewRoutes');
 
 //connection router with the app via middleware
 //VIEWS ROUTES
-app.get('/', (req, res) => {
-  res.status(200).render('home', {
-    title: 'Welcome page'
-  });
-});
-
-app.get('/tours', (req, res) => {
-  res.status(200).render('tours', {
-    title: 'Find your tour!'
-  });
-});
+app.use('/', viewRouter);
 
 //API ROUTES
 app.use('/api/v1/tours', tourRouter);
