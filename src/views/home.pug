@@ -160,6 +160,16 @@ block content
         section.section-book
             div.row
                 div.book
-
-
+                    div.book__form
+                        div.u-center-text.u-margin-bottom-medium
+                            h2.heading-secondary Lorem ipsum dolor
+                        form(action='#').form
+                            div.form__group
+                                input(type='text' placeholder='Name' required autocomplete='off').form__input#name
+                                label(for='name').form__label
+                                    |Name
+                            div.form__group
+                                input(type='email' placeholder='Email' required autocomplete='off').form__input#email
+                                label(for='email').form__label
+                                    | Name
     script(src="./js/script.js")

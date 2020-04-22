@@ -128,6 +128,10 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.u-margin-bottom-smallest {
+  margin-bottom: 0.5rem;
+}
+
 .u-margin-top-big {
   margin-top: 8rem;
 }
@@ -477,7 +481,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.4;
 }
 
 .glide {
@@ -613,6 +616,47 @@ body {
   cursor: -webkit-grabbing;
 }
 
+.form__group:not(:last-child) {
+  margin-bottom: 2rem;
+}
+.form__input {
+  font-size: 1.5rem;
+  font-family: inherit;
+  color: inherit;
+  padding: 1.5rem 2rem;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-bottom: 3px solid transparent;
+  width: 80%;
+  display: block;
+  transition: all 0.3s;
+}
+.form__input:focus {
+  outline: none;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  border-bottom: 3px solid #4fdbff;
+}
+.form__input:focus:invalid {
+  border-bottom: 3px solid #ff2800;
+}
+.form__input::-webkit-input-placeholder {
+  color: #999;
+}
+.form__label {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-left: 2rem;
+  margin-top: 0.7rem;
+  display: block;
+  transition: all 0.3s;
+}
+.form__input:placeholder-shown + .form__label {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4rem);
+}
+
 .row {
   max-width: 114rem;
   margin: 0 auto;
@@ -686,11 +730,15 @@ body {
 }
 
 .book {
-  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 50%), url("../../images/header-background.jpg");
+  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.7) 50%, transparent 50%), url("../../images/header-background.jpg");
   background-size: 100%;
   border-radius: 3px;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
   height: 50rem;
+}
+.book__form {
+  width: 50%;
+  padding: 6rem;
 }
 
 /*# sourceMappingURL=style.css.map */
