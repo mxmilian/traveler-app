@@ -433,7 +433,7 @@ body {
 }
 .card__details--features div {
   width: 100%;
-  padding: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 .card__details--features div::after {
   content: "";
