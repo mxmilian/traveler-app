@@ -1,3 +1,4 @@
+@charset "UTF-8";
 *,
 *::after,
 *::before {
@@ -101,6 +102,12 @@ body {
 
 .heading-tertiary {
   font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.heading-quaternary {
+  font-size: 1.4rem;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -386,20 +393,63 @@ body {
   background-image: linear-gradient(to right bottom, rgba(79, 219, 255, 0.95), rgba(20, 55, 64, 0.95));
 }
 .card__details {
-  padding: 2rem;
+  padding: 0 3rem;
+  position: relative;
 }
-.card__details ul {
-  list-style: none;
-  width: 80%;
-  margin: 0 auto;
+.card__details--stars {
+  display: inline-block;
+  font-size: 3rem;
+  font-family: Times, serif;
+  line-height: 1;
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  transform: translateX(-50%);
 }
-.card__details ul li {
+.card__details--stars::before {
+  content: "★★★★★";
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, #4fdbff calc(var(--rating) / 5 * 100%), #f5f5f5 calc(var(--rating) / 5 * 100%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.card__details--stars p {
+  font-size: 1.2rem;
+  position: absolute;
+  top: 105%;
+  right: -5%;
+}
+.card__details--heading {
+  margin-top: 5rem;
+  margin-bottom: 0.2rem;
+}
+.card__details--text {
+  text-align: left;
+  font-size: 1.5rem;
+  font-weight: 300;
+  width: 100%;
+  word-wrap: break-word;
+  margin-bottom: 1rem;
+}
+.card__details--features div {
+  width: 100%;
+  padding: 0.5rem;
+}
+.card__details--features div::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.card__details--features--icon {
+  float: left;
+  display: inline-block;
   text-align: center;
-  font-size: 1.6rem;
-  padding: 1rem;
+  font-size: 2rem;
+  padding-right: 0.5rem;
+  -webkit-text-stroke: 1px #4fdbff;
 }
-.card__details ul li:not(:last-child) {
-  border-bottom: 1px solid #eee;
+.card__details--features p {
+  font-weight: 300;
 }
 .card__cta {
   position: absolute;
@@ -645,7 +695,7 @@ body {
   border-bottom: 3px solid #ff2800;
 }
 .form__input::-webkit-input-placeholder {
-  color: #999;
+  color: #999999;
 }
 .form__label {
   font-size: 1.3rem;

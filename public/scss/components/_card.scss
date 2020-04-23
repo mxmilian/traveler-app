@@ -81,22 +81,71 @@
   }
 
   &__details{
-    padding: 2rem;
-    ul {
-      list-style: none;
-      width: 80%;
-      margin: 0 auto;
+    padding: 0 3rem;
+    position: relative;
+    &--stars {
+      $percent: calc(var(--rating) / 5 * 100%);
+      display: inline-block;
+      font-size: 3rem;
+      font-family: Times, serif;
+      line-height: 1;
+      position: absolute;
+      top: -30%;
+      left: 50%;
+      transform: translateX(-50%);
 
-      li {
-        text-align: center;
-        font-size: 1.6rem;
-        padding: 1rem;
+      &::before {
+        content: '★★★★★';
+        letter-spacing: 3px;
+        background: linear-gradient(90deg, $lightness_primary $percent, $page-background $percent);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
 
-        &:not(:last-child) {
-          border-bottom: 1px solid $border-li;
-        }
+      p {
+        font-size: 1.2rem;
+        position: absolute;
+        top: 105%;
+        right: -5%;
       }
     }
+
+    &--heading {
+      margin-top: 5rem;
+      margin-bottom: .2rem;
+    }
+
+    &--text {
+      text-align: left;
+      font-size: 1.5rem;
+      font-weight: 300;
+      width: 100%;
+      word-wrap: break-word;
+      margin-bottom: 1rem;
+    }
+
+    &--features {;
+      div {
+        @include clearfix;
+        width: 100%;
+        padding: .5rem;
+      }
+
+      &--icon {
+        float: left;
+        display: inline-block;
+        text-align: center;
+        font-size: 2rem;
+        padding-right: .5rem;
+        -webkit-text-stroke: 1px $lightness_primary;
+      }
+
+      p {
+        font-weight: 300;
+
+      }
+    }
+
   }
 
   //Back style

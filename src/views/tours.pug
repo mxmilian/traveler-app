@@ -1,5 +1,43 @@
 extends base
 
 block content
-    h1
-        |This is tours block!
+    div.row
+            div.col-1-of-3
+                div.card
+                    div.card__side.card__side--front
+                        div.card__picture.card__picture--first
+                        h4.card__heading
+                            span.card__heading-span.card__heading-span--first
+                                | NameXDD sdasdsads
+                        div.card__details
+                            div.card__details--stars(style='--rating: 3.5;')
+                                p (6ratings)
+                            h4.card__details--heading.heading-quaternary
+                                |XDDDDDDDDDDDD
+                            div.card__details--text
+                                p
+                                    |asdasdasdasdsadasdasdsadsadasdsadsadasdasdasdasdasdsadasdadssadasda
+                            div.card__details--features
+                                div
+                                    div.col-1-of-2
+                                        i.card__details--features--icon.icon-basic-heart
+                                        p XDD
+                                    div.col-1-of-2
+                                        i.card__details--features--icon.icon-basic-heart
+                                        p xDD
+                                div
+                                    div.col-1-of-2
+                                        i.card__details--features--icon.icon-basic-heart
+                                        p XDD
+                                    div.col-1-of-2
+                                        i.card__details--features--icon.icon-basic-map
+                                        p XDD
+                    div.card__side.card__side--back.card__side--back-first
+                        div.card__cta
+                            div.card__price-box
+                                p.card__price-only
+                                    | back
+                                p.card__price-value
+                                    | $999.99
+                            a(href='#').btn.btn--white.btn--card
+                                | Book now!
