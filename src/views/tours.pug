@@ -1,43 +1,47 @@
 extends base
 
 block content
-    div.row
-            div.col-1-of-3
-                div.card
-                    div.card__side.card__side--front
-                        div.card__picture.card__picture--first
-                        h4.card__heading
-                            span.card__heading-span.card__heading-span--first
-                                | NameXDD sdasdsads
-                        div.card__details
-                            div.card__details--stars(style='--rating: 3.5;')
-                                p (6ratings)
-                            h4.card__details--heading.heading-quaternary
-                                |XDDDDDDDDDDDD
-                            div.card__details--text
-                                p
-                                    |asdasdasdasdsadasdasdsadsadasdsadsadasdasdasdasdasdsadasdadssadasda
-                            div.card__details--features
-                                div
-                                    div.col-1-of-2
-                                        i.card__details--features--icon.icon-basic-heart
-                                        p XDD
-                                    div.col-1-of-2
-                                        i.card__details--features--icon.icon-basic-heart
-                                        p xDD
-                                div
-                                    div.col-1-of-2
-                                        i.card__details--features--icon.icon-basic-heart
-                                        p XDD
-                                    div.col-1-of-2
-                                        i.card__details--features--icon.icon-basic-map
-                                        p XDD
-                    div.card__side.card__side--back.card__side--back-first
-                        div.card__cta
-                            div.card__price-box
-                                p.card__price-only
-                                    | back
-                                p.card__price-value
-                                    | $999.99
-                            a(href='#').btn.btn--white.btn--card
-                                | Book now!
+    each tour, index in tours
+        -console.log(tours)
+        if index % 3 === 0
+            | <div class='row'>
+        div.col-1-of-3
+            div.card
+                div.card__side.card__side--front
+                    div.card__picture.card__picture--first
+                    h4.card__heading
+                        span.card__heading-span.card__heading-span--first= tour.name
+                    div.card__details
+                        div.card__details--stars(style=`--rating: ${tours.ratingsAverage};`)
+                            p (6ratings)
+                        h4.card__details--heading.heading-quaternary
+                            |XDDDDDDDDDDDD
+                        div.card__details--text
+                            p
+                                |asdasdasdasdsadasdasdsadsadasdsadsadasdasdasdasdasdsadasdadssadasda
+                        div.card__details--features
+                            div
+                                div.col-1-of-2
+                                    i.card__details--features--icon.icon-basic-geolocalize-01
+                                    p XDD
+                                div.col-1-of-2
+                                    i.card__details--features--icon.icon-basic-postcard-multiple
+                                    p xDD
+                            div
+                                div.col-1-of-2
+                                    i.card__details--features--icon.icon-basic-flag2
+                                    p XDD
+                                div.col-1-of-2
+                                    i.card__details--features--icon.icon-basic-heart
+                                    p XDD
+                div.card__side.card__side--back.card__side--back-first
+                    div.card__cta
+                        div.card__price-box
+                            p.card__price-only
+                                | back
+                            p.card__price-value
+                                | $999.99
+                        a(href='#').btn.btn--white.btn--card
+                            | Book now!
+        if (index % 3 === 2 || index === tours.length - 1)
+            | </div>

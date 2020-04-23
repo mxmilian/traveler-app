@@ -1,5 +1,6 @@
 const axios = require('axios').default;
 const catchAsync = require('../errors/catchAsync');
+const Tour = require('../models/tourModel');
 //const Errors = require('../errors/errorsClass');
 
 const getHome = catchAsync(async (req, res, next) => {
@@ -12,11 +13,13 @@ const getHome = catchAsync(async (req, res, next) => {
   });
 });
 
-const getTours = (req, res) => {
+const getTours = catchAsync(async (req, res) => {
+  const tours = await Tour.find();
   res.status(200).render('tours', {
-    title: 'Find your tour!'
+    title: 'Find your tour!',
+    tours
   });
-};
+});
 
 module.exports = {
   getHome,

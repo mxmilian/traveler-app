@@ -788,6 +788,13 @@ body {
   width: calc(3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem);
 }
 
+.now {
+  display: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 .section-about {
   background-color: #f5f5f5;
   padding: 25rem 0 30rem 0;
