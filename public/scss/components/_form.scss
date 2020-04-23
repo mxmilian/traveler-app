@@ -1,7 +1,7 @@
 .form {
 
   &__group:not(:last-child) {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   &__input {
@@ -45,5 +45,51 @@
     opacity: 0;
     visibility: hidden;
     transform: translateY(-4rem);
+  }
+
+  &__checkbox-group {
+    width: 50%;
+    display: inline-block;
+  }
+
+  &__checkbox-input {
+    display: none;
+  }
+
+  &__checkbox-label {
+    font-size: $default-font-size;
+    cursor: pointer;
+    position: relative;
+    padding-left: 2.5rem;
+  }
+
+  &__checkbox-button {
+    height: 2rem;
+    width: 2rem;
+    border: 3px solid $lightness_primary;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 1px;
+
+    &::after {
+      content: '';
+      display: block;
+      height: 1rem;
+      width: 1rem;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: $lightness_primary;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+  }
+
+  &__checkbox-input:checked ~ &__checkbox-label &__checkbox-button::after {
+    opacity: 1;
   }
 }
