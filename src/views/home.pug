@@ -60,7 +60,7 @@ block content
                         p.feature-box__text
                             | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime?
                             | Loremipsum dolor sit amet,consectetur adipisicing elit. Molestias, ullam
-        section.section-tours
+        section.section-tours#section-tours
             div.u-center-text.u-margin-bottom-big
                 h2.heading-secondary
                     | The best tours!
@@ -102,7 +102,7 @@ block content
                                     p.card__price-only
                                         | only
                                     p.card__price-value=`$${tour.price}`
-                                a(href='#').btn.btn--white.btn--card
+                                a(href='#popup-1').btn.btn--white.btn--card
                                     | Book now!
                 if (index % 3 === 2 || index === tours.length - 1)
                     | </div>
@@ -196,12 +196,14 @@ block content
                             div.form__group
                                 button.btn.btn--card.btn--blue
                                     | Lorem ipsum
-    div.popup
+    div.popup#popup-1
         div.popup__content
             div.popup__left
                 img(src='./images/mountain-1.jpg' alt='mountain-1').popup__photo
                 img(src='./images/mountain-2.jpg' alt='mountain-2').popup__photo
             div.popup__right
+                a(href="#section-tours").popup__close
+                    | &times;
                 h2.heading-secondary.u-margin-bottom-small
                     | Lorem ipsum.
                 h3.heading-tertiary.u-margin-bottom-small
