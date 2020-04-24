@@ -69,13 +69,13 @@ block content
                     | <div class='row'>
                 div.col-1-of-3
                     include components/_card
-                    -let date = tour.startDates[0].toLocaleString().split('-');
-                    -console.log(date)
-                    -date = `${date[0]} ${date[1]}`;
+                    -let date = tour.startDates[0].split('-');
+                    -const months = ["January", "February", "March", "April", "May", "June", "July", "August","September", "October", "November", "December" ];
+                    -date = `${date[0]} ${months[Number(date[1])]}`
                     +card(tour.name,tour.ratingsAverage,tour.ratingsQuantity,tour.difficulty,tour.duration, tour.summary,tour
-                            .startLocation.description, tour.description, date, tour.locations.length, tour
+                      .startLocation.description, tour.description, date, tour.locations.length, tour
                       .maxGroupSize, tour.price,tour
-                            .slug, index)
+                      .slug, index)
                 if (index % 3 === 2 || index === tours.length - 1)
                     | </div>
             div.u-center-text.u-margin-top-big

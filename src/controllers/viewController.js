@@ -15,7 +15,6 @@ const getHome = catchAsync(async (req, res, next) => {
 
 const getTours = catchAsync(async (req, res) => {
   const tours = await Tour.find();
-  console.log(tours);
   res.status(200).render('tours', {
     title: 'Find your tour!',
     tours
@@ -23,12 +22,10 @@ const getTours = catchAsync(async (req, res) => {
 });
 
 const getTour = catchAsync(async (req, res) => {
-  console.log(req.params.slug);
   const tours = await Tour.findOne({ slug: req.params.slug }).populate({
     path: 'reviews',
     fields: 'review rating user'
   });
-  console.log(tours);
   res.status(200).render('tour', {
     title: tours.name,
     tours

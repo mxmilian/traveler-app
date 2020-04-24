@@ -10,6 +10,9 @@ block content
             include components/_card
             +card(tour.name,tour.ratingsAverage,tour.ratingsQuantity,tour.difficulty,tour.duration, tour.summary,tour
               .startLocation.description, tour.description,date, tour.locations.length, tour.maxGroupSize, tour.price,tour
-              .slug)
+              .slug, index)
         if (index % 3 === 2 || index === tours.length - 1)
             | </div>
+    each tour, index in tours
+        include components/_popup
+        +popup(tour.name, tour.summary , tour.description, index)
