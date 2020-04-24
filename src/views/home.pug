@@ -68,42 +68,14 @@ block content
                 if index % 3 === 0
                     | <div class='row'>
                 div.col-1-of-3
-                    div.card
-                        div.card__side.card__side--front
-                            div.card__picture.card__picture--first
-                            h4.card__heading
-                                span.card__heading-span.card__heading-span--first=tour.name
-                            div.card__details
-                                div.card__details--stars(style=`--rating: ${tour.ratingsAverage};`)
-                                    p=`(${tour.ratingsQuantity}ratings)`
-                                h4.card__details--heading.heading-quaternary=`${tour.difficulty} ${tour.duration}-DAYS TOUR`
-                                div.card__details--text
-                                    p=tour.summary
-                                div.card__details--features
-                                    div
-                                        div.col-1-of-2
-                                            i.card__details--features--icon.icon-basic-geolocalize-01
-                                            p=tour.startLocation.description
-                                        div.col-1-of-2
-                                            i.card__details--features--icon.icon-basic-postcard-multiple
-                                            -let date = tour.startDates[0].toString().split(' ');
-                                            -date = `${date[1]} ${date[3]}`;
-                                            p=date
-                                    div
-                                        div.col-1-of-2
-                                            i.card__details--features--icon.icon-basic-flag2
-                                            p=`${tour.locations.length} stops`
-                                        div.col-1-of-2
-                                            i.card__details--features--icon.icon-basic-heart
-                                            p=`${tour.maxGroupSize} people`
-                        div.card__side.card__side--back.card__side--back-first
-                            div.card__cta
-                                div.card__price-box
-                                    p.card__price-only
-                                        | only
-                                    p.card__price-value=`$${tour.price}`
-                                a(href='#popup-1').btn.btn--white.btn--card
-                                    | Book now!
+                    include components/_card
+                    -let date = tour.startDates[0].toLocaleString().split('-');
+                    -console.log(date)
+                    -date = `${date[0]} ${date[1]}`;
+                    +card(tour.name,tour.ratingsAverage,tour.ratingsQuantity,tour.difficulty,tour.duration, tour.summary,tour
+                            .startLocation.description, tour.description, date, tour.locations.length, tour
+                      .maxGroupSize, tour.price,tour
+                            .slug, index)
                 if (index % 3 === 2 || index === tours.length - 1)
                     | </div>
             div.u-center-text.u-margin-top-big
@@ -196,22 +168,8 @@ block content
                             div.form__group
                                 button.btn.btn--card.btn--blue
                                     | Lorem ipsum
-    div.popup#popup-1
-        div.popup__content
-            div.popup__left
-                img(src='./images/mountain-1.jpg' alt='mountain-1').popup__photo
-                img(src='./images/mountain-2.jpg' alt='mountain-2').popup__photo
-            div.popup__right
-                a(href="#section-tours").popup__close
-                    | &times;
-                h2.heading-secondary.u-margin-bottom-small
-                    | Lorem ipsum.
-                h3.heading-tertiary.u-margin-bottom-small
-                    | Lorem ipsum dolor sit amet.
-                p.popup__paragraph.u-margin-bottom-medium
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime?
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime?
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, maxime?
-                a(href='/tours').btn.btn--card.btn--blue Details
+    each tour, index in tours
+        include components/_popup
+        +popup(tour.name, tour.summary , tour.description, index)
 
     script(src="./js/script.js")

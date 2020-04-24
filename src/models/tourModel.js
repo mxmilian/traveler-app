@@ -116,7 +116,7 @@ const tourSchema = new mongoose.Schema(
 
 tourSchema.index({ price: 1, ratingsAverage: -1 });
 tourSchema.index({ startLocation: '2dsphere' });
-//tourSchema.index({slug: 1});
+tourSchema.index({ slug: 1 });
 
 tourSchema.virtual('durationWeeks').get(function() {
   const weeks = (this.duration / 7).toFixed(1).split('.');
@@ -140,9 +140,7 @@ tourSchema.virtual('reviews', {
 
 //Document middleware: runs before .save() and .create() not .update()
 tourSchema.pre('save', function(next) {
-  this.name = slugify(this.name, {
-    replacement: ' '
-  });
+  this.slug = slugify(this.name, { lower: true });
   next();
 });
 

@@ -1,0 +1,35 @@
+mixin card(name, ratingsAverage, ratingsQuantity,  difficulty, duration, summary, start, description, date, length,maxGroupSize,price, slug, index)
+    div.card
+        div.card__side.card__side--front
+            div.card__picture.card__picture--first
+            h4.card__heading
+                span.card__heading-span.card__heading-span--first=name
+            div.card__details
+                div.card__details--stars(style=`--rating: ${ratingsAverage};`)
+                    p=`(${ratingsQuantity}ratings)`
+                h4.card__details--heading.heading-quaternary=`${difficulty} ${duration}-DAYS TOUR`
+                div.card__details--text
+                    p=summary
+                div.card__details--features
+                    div
+                        div.col-1-of-2
+                            i.card__details--features--icon.icon-basic-geolocalize-01
+                            p=start
+                        div.col-1-of-2
+                            i.card__details--features--icon.icon-basic-postcard-multiple
+                            p=date
+                    div
+                        div.col-1-of-2
+                            i.card__details--features--icon.icon-basic-flag2
+                            p=`${length} stops`
+                        div.col-1-of-2
+                            i.card__details--features--icon.icon-basic-heart
+                            p=`${maxGroupSize} people`
+        div.card__side.card__side--back.card__side--back-first
+            div.card__cta
+                div.card__price-box
+                    p.card__price-only
+                        | only
+                    p.card__price-value=`$${price}`
+                a(href=`#popup-${index}`).btn.btn--white.btn--card
+                    | Book now!

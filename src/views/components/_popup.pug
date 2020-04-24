@@ -1,0 +1,13 @@
+mixin popup(name, shortdesc, description, index)
+    div(id=`popup-${index}`).popup
+        div.popup__content
+            div.popup__left
+                img(src='./images/mountain-1.jpg' alt='mountain-1').popup__photo
+                img(src='./images/mountain-2.jpg' alt='mountain-2').popup__photo
+            div.popup__right
+                a(href="#section-tours").popup__close
+                    | &times;
+                h2.heading-secondary.u-margin-bottom-small=name
+                h3.heading-tertiary.u-margin-bottom-small=shortdesc
+                p.popup__paragraph.u-margin-bottom-medium=description
+                a(href='/tours').btn.btn--card.btn--blue Details
