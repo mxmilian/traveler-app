@@ -16,7 +16,7 @@ body {
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 1.7;
-  color: #666;
+  color: #666666;
 }
 
 @keyframes moveInLeft {
@@ -68,7 +68,7 @@ body {
 }
 .heading-primary--main {
   display: block;
-  font-size: 60px;
+  font-size: 6rem;
   font-weight: 400;
   letter-spacing: 35px;
   animation-name: moveInLeft;
@@ -181,7 +181,7 @@ body {
 }
 .btn--white {
   background-color: #fff;
-  color: #666;
+  color: #666666;
 }
 .btn--white::after {
   background-color: #fff;
@@ -814,7 +814,7 @@ body {
   hyphens: auto;
 }
 .popup__close:link, .popup__close:visited {
-  color: #666;
+  color: #666666;
   position: absolute;
   line-height: 1;
   top: 1.5rem;
@@ -826,6 +826,72 @@ body {
 }
 .popup__close:hover {
   color: #4fdbff;
+}
+
+.tour-header {
+  height: 75vh;
+  -webkit-clip-path: polygon(100% 0, 100% 79%, 84% 87%, 62% 84%, 43% 91%, 19% 92%, 0 100%, 0 0);
+  clip-path: polygon(100% 0, 100% 79%, 84% 87%, 62% 84%, 43% 91%, 19% 92%, 0 100%, 0 0);
+}
+.tour-header__img {
+  width: 100%;
+  display: block;
+  margin: auto auto;
+}
+
+.tour-heading {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.tour-heading__group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tour-heading__heading {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  display: block;
+  text-align: center;
+  font-size: 6rem;
+  font-weight: 300;
+  letter-spacing: 35px;
+  padding-bottom: 2rem;
+}
+.tour-heading__heading-span {
+  padding: 3rem 0 3rem 2rem;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  text-align: center;
+}
+.tour-heading__heading-span--first {
+  background-image: linear-gradient(to right bottom, rgba(79, 219, 255, 0.95), rgba(20, 55, 64, 0.95));
+}
+.tour-heading__detail {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  text-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
+}
+.tour-heading__detail svg {
+  margin-right: 0.8rem;
+}
+.tour-heading__detail:not(:last-child) {
+  margin-right: 4rem;
+}
+.tour-heading__icon {
+  height: 2rem;
+  width: 2rem;
+  fill: #fff;
+  filter: drop-shadow(0 0.75rem 0.5rem rgba(0, 0, 0, 0.25));
+}
+.tour-heading__text {
+  color: #fff;
 }
 
 .row {

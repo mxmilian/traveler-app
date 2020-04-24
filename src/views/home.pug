@@ -170,6 +170,6 @@ block content
                                     | Lorem ipsum
     each tour, index in tours
         include components/_popup
-        +popup(tour.name, tour.summary , tour.description, index)
+        +popup(tour.name, tour.summary, tour.description, tour.slug, index)
 
     script(src="./js/script.js")

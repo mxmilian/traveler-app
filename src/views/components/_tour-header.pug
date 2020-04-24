@@ -1,0 +1,15 @@
+mixin tour-header()
+    header.tour-header
+        img(src='/images/header-background.jpg' alt='Traveler logo').tour-header__img
+        div.tour-heading
+            h1.tour-heading__heading
+                span.tour-heading__heading-span.tour-heading__heading-span--first='Aliabdda siada'
+            div.tour-heading__group
+                div.tour-heading__detail
+                    svg.tour-heading__icon
+                        use(xlink:href='/img/icons.svg#icon-clock')
+                    span.tour-heading__text 10 days
+                div.tour-heading__detail
+                    svg.tour-heading__icon
+                        use(xlink:href='/img/icons.svg#icon-map-pin')
+                    span.tour-heading__text Las Vegas, USA

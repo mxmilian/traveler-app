@@ -1,0 +1,78 @@
+.tour-header {
+  height: 75vh;
+
+
+  -webkit-clip-path: polygon(100% 0, 100% 79%, 84% 87%, 62% 84%, 43% 91%, 19% 92%, 0 100%, 0 0);
+  clip-path: polygon(100% 0, 100% 79%, 84% 87%, 62% 84%, 43% 91%, 19% 92%, 0 100%, 0 0);
+
+  &__img {
+    width: 100%;
+    display: block;
+    margin: auto auto;
+  }
+}
+
+.tour-heading {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &__group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__heading {
+
+    color: $white;
+    text-transform: uppercase;
+    backface-visibility: hidden;
+
+    display: block;
+    text-align: center;
+    font-size: 6rem;
+    font-weight: 300;
+    letter-spacing: 35px;
+    padding-bottom: 2rem;
+  }
+
+  &__heading-span {
+    padding: 3rem 0 3rem 2rem;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    text-align: center;
+    &--first {
+      background-image: linear-gradient(to right bottom, rgba($lightness_primary, .95), rgba($darkness_primary, .95));
+    }
+  }
+
+  &__detail {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    text-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
+
+    svg {
+      margin-right: .8rem;
+    }
+
+    &:not(:last-child) {
+      margin-right: 4rem;
+    }
+  }
+
+  &__icon {
+    height: 2rem;
+    width: 2rem;
+    fill: $white;
+    filter: drop-shadow(0 0.75rem 0.5rem rgba(0, 0, 0, 0.25));
+  }
+
+  &__text {
+    color: $white;
+  }
+}

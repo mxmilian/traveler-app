@@ -1,4 +1,4 @@
-mixin popup(name, shortdesc, description, index)
+mixin popup(name, shortdesc, description, slug, index)
     div(id=`popup-${index}`).popup
         div.popup__content
             div.popup__left
@@ -10,4 +10,4 @@ mixin popup(name, shortdesc, description, index)
                 h2.heading-secondary.u-margin-bottom-small=name
                 h3.heading-tertiary.u-margin-bottom-small=shortdesc
                 p.popup__paragraph.u-margin-bottom-medium=description
-                a(href='/tours').btn.btn--card.btn--blue Details
+                a(href=`/tours/${slug}`).btn.btn--card.btn--blue Details
