@@ -981,6 +981,12 @@ body {
   padding-bottom: 27%;
 }
 
+.tour-map {
+  padding: 20rem 0;
+  background-color: #4fdbff;
+  margin-top: -20rem;
+}
+
 .row {
   max-width: 114rem;
   margin: 0 auto;
