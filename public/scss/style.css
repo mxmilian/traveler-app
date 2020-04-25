@@ -100,6 +100,17 @@ body {
   transform: rotateX(300deg);
 }
 
+.heading-secondary-tour {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(to right, #4fdbff, #286e80);
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 1.5px;
+}
+
 .heading-tertiary {
   font-size: 1.6rem;
   font-weight: 700;
@@ -894,6 +905,57 @@ body {
   color: #fff;
 }
 
+.tour-main {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.tour-main__container {
+  padding: 25rem 0 30rem 0;
+  margin-top: -20vh;
+  width: 100%;
+}
+.tour-main__container--left {
+  background-color: #f5f5f5;
+}
+.tour-main__box {
+  display: table;
+  margin: 0 auto;
+}
+.tour-main__box:not(:last-child) {
+  margin-bottom: 7rem;
+}
+.tour-main__detail {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+}
+.tour-main__detail svg {
+  margin-right: 1.25rem;
+}
+.tour-main__detail:not(:last-child) {
+  margin-bottom: 2.25rem;
+}
+.tour-main__icon {
+  height: 2.25rem;
+  width: 2.25rem;
+  fill: #47c5e6;
+}
+.tour-main__label {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-right: 2rem;
+  text-transform: uppercase;
+}
+.tour-main__text {
+  font-weight: 300;
+  text-transform: capitalize;
+}
+.tour-main__img {
+  height: 3.5rem;
+  margin-right: 1.25rem;
+  border-radius: 50%;
+}
 .row {
   max-width: 114rem;
   margin: 0 auto;
