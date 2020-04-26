@@ -7,6 +7,11 @@
     margin-top: -20vh;
     width: 100%;
 
+    &--text{
+      width: 50vw;
+      padding: 0 13rem;
+      hyphens: auto;
+    }
     &--left {
       background-color: $page-background;
     }
@@ -44,6 +49,7 @@
 
   &__label {
     font-size: 1.4rem;
+    letter-spacing: .6px;
     font-weight: 700;
     margin-right: 2rem;
     text-transform: uppercase;
@@ -61,7 +67,17 @@
   }
 
   &__desc {
+    font-size: 1.7rem;
+    letter-spacing: .4px;
+    font-weight: 300;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 
+    &:not(:last-child) {
+      margin-bottom: 1.25rem;
+    }
   }
 
 }

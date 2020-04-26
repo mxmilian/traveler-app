@@ -151,6 +151,16 @@ tourSchema.pre(/^find/, function(next) {
   next();
 });
 
+//Populate tour model with guides
+tourSchema.pre(/^find/, function(next) {
+  this.populate({
+    path: 'guides',
+    select: '-__v -passwordChangedAt'
+  });
+
+  next();
+});
+
 // EMBEDDING GUIDES TO TOURS (DRAWBACKS)
 // tourSchema.pre('save', async function(next) {
 //   const promisesArray = this.guides.map(async id => await User.findById(id));

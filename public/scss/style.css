@@ -841,13 +841,25 @@ body {
 
 .tour-header {
   height: 75vh;
+  position: relative;
   -webkit-clip-path: polygon(100% 0, 100% 79%, 84% 87%, 62% 84%, 43% 91%, 19% 92%, 0 100%, 0 0);
   clip-path: polygon(100% 0, 100% 79%, 84% 87%, 62% 84%, 43% 91%, 19% 92%, 0 100%, 0 0);
 }
 .tour-header__img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  height: 100%;
   width: 100%;
-  display: block;
-  margin: auto auto;
+  -o-object-position: 50% 50%;
+  object-position: 50% 50%;
+}
+.tour-header__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#4fdbff), to(#143740));
+  background-image: linear-gradient(to right bottom, #4fdbff, #143740);
+  opacity: 0.25;
 }
 
 .tour-heading {
@@ -870,7 +882,7 @@ body {
   font-size: 6rem;
   font-weight: 300;
   letter-spacing: 35px;
-  padding-bottom: 2rem;
+  padding-bottom: 4rem;
 }
 .tour-heading__heading-span {
   padding: 3rem 0 3rem 2rem;
@@ -914,6 +926,11 @@ body {
   margin-top: -20vh;
   width: 100%;
 }
+.tour-main__container--text {
+  width: 50vw;
+  padding: 0 13rem;
+  hyphens: auto;
+}
 .tour-main__container--left {
   background-color: #f5f5f5;
 }
@@ -943,6 +960,7 @@ body {
 }
 .tour-main__label {
   font-size: 1.4rem;
+  letter-spacing: 0.6px;
   font-weight: 700;
   margin-right: 2rem;
   text-transform: uppercase;
@@ -956,6 +974,19 @@ body {
   margin-right: 1.25rem;
   border-radius: 50%;
 }
+.tour-main__desc {
+  font-size: 1.7rem;
+  letter-spacing: 0.4px;
+  font-weight: 300;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.tour-main__desc:not(:last-child) {
+  margin-bottom: 1.25rem;
+}
+
 .tour-pictures {
   display: flex;
   clip-path: polygon(0 9vw, 100% 0, 100% calc(100% - 9vw), 0 100%);

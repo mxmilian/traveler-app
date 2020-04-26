@@ -2,7 +2,7 @@ extends base
 
 block content
     include components/_tour-header
-    +tour-header()
+    +tour-header(tour.imageCover, tour.name, tour.duration, tour.startLocation.description)
     include components/_tour-main
     +tour-main()
     include components/_tour-pictures

@@ -1,57 +1,35 @@
+mixin tour-detail(icon, label, text)
+    div.tour-main__detail
+        svg.tour-main__icon
+            use(xlink:href=`/img/icons.svg#icon-${icon}`)
+        span.tour-main__label=label
+        span.tour-main__text=text
+
 mixin tour-main()
     section.tour-main
         div.tour-main__container.tour-main__container--left
             div.tour-main__box
-                h2.heading-secondary-tour.u-margin-bottom-small='Siema'
-                div.tour-main__detail
-                    svg.tour-main__icon
-                        use(xlink:href='/img/icons.svg#icon-calendar')
-                    span.tour-main__label Next date
-                    span.tour-main__text August 2021
-                div.tour-main__detail
-                    svg.tour-main__icon
-                        use(xlink:href='/img/icons.svg#icon-calendar')
-                    span.tour-main__label Next date
-                    span.tour-main__text August 2021
-                div.tour-main__detail
-                    svg.tour-main__icon
-                        use(xlink:href='/img/icons.svg#icon-calendar')
-                    span.tour-main__label Next date
-                    span.tour-main__text August 2021
-                div.tour-main__detail
-                    svg.tour-main__icon
-                        use(xlink:href='/img/icons.svg#icon-calendar')
-                    span.tour-main__label Next date
-                    span.tour-main__text August 2021
+                h2.heading-secondary-tour.u-margin-bottom-small='About tour'
+                -const date = tour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'});
+                +tour-detail('calendar', 'Start date', date)
+                +tour-detail('trending-up', 'Difficulty', tour.difficulty)
+                +tour-detail('user', 'Group size', `${tour.maxGroupSize} people`)
+                +tour-detail('star', 'rating', `${tour.ratingsAverage} / 5`)
             div.tour-main__box
-                h2.heading-secondary-tour.u-margin-bottom-small='Siema'
-                div.tour-main__detail
-                    img.tour-main__img(src='/img/users/user-19.jpg', alt='Lead guide')
-                    span.tour-main__label Next date
-                    span.tour-main__text August 2021
-                div.tour-main__detail
-                    img.tour-main__img(src='/img/users/user-19.jpg', alt='Lead guide')
-                    span.tour-main__label Next date
-                    span.tour-main__text August 2021
-                div.tour-main__detail
-                    img.tour-main__img(src='/img/users/user-19.jpg', alt='Lead guide')
-                    span.tour-main__label Next date
-                    span.tour-main__text August 2021
-                div.tour-main__detail
-                    img.tour-main__img(src='/img/users/user-19.jpg', alt='Lead guide')
-                    span.tour-main__label Next date
-                    span.tour-main__text August 2021
-                div.tour-main__detail
-                    img.tour-main__img(src='/img/users/user-19.jpg', alt='Lead guide')
-                    span.tour-main__label Next date
-                    span.tour-main__text August 2021
+                h2.heading-secondary-tour.u-margin-bottom-small='Guides tour'
+                each guide in tour.guides
+                    div.tour-main__detail
+                        img.tour-main__img(src=`/img/users/${guide.photo}`, alt='Lead guide')
+                        - if (guide.role === 'lead-guide')
+                            span.tour-main__label LEAD GUIDE
+                        - if (guide.role === 'guide')
+                            span.tour-main__label GUIDE TOUR
+                        span.tour-main__text=guide.name
         div.tour-main__container.tour-main__container--right
             div.tour-main__box
-                h2.heading-secondary-tour.u-margin-bottom-small='Siema'
-                p.tour-main__desc='sieamsiewmewqeqwemqweqwmeqwmemqwemqwmeqwmemqwemqwmeqwmemqmeqwmemqwemwqmemwq'
-                p.tour-main__desc='sieamsiewmewqeqwemqweqwmeqwmemqwemqwmeqwmemqwemqwmeqwmemqmeqwmemqwemwqmemwq'
-                p.tour-main__desc='sieamsiewmewqeqwemqweqwmeqwmemqwemqwmeqwmemqwemqwmeqwmemqmeqwmemqwemwqmemwq'
-                p.tour-main__desc='sieamsiewmewqeqwemqweqwmeqwmemqwemqwmeqwmemqwemqwmeqwmemqmeqwmemqwemwqmemwq'
-                p.tour-main__desc='sieamsiewmewqeqwemqweqwmeqwmemqwemqwmeqwmemqwemqwmeqwmemqmeqwmemqwemwqmemwq'
-                p.tour-main__desc='sieamsiewmewqeqwemqweqwmeqwmemqwemqwmeqwmemqwemqwmeqwmemqmeqwmemqwemwqmemwq'
+                div.tour-main__container--text
+                    h2.heading-secondary-tour.u-margin-bottom-small=`${tour.name} description`
+                    - const pars = tour.description.split('\n');
+                    each par in pars
+                        p.tour-main__desc=par
 
