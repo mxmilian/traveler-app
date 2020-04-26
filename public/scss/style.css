@@ -997,6 +997,7 @@ body {
   -webkit-clip-path: polygon(0 9vw, 100% 0, 100% calc(100% - 9vw), 0 100%);
   position: relative;
   margin-top: -35rem;
+  z-index: 1;
 }
 
 .picture-box__img {
@@ -1017,10 +1018,16 @@ body {
 }
 
 .tour-map {
-  padding: 20rem 0;
-  background-color: #4fdbff;
+  position: relative;
   height: 75vh;
-  margin-top: -20rem;
+  margin-top: calc(0px - 9vw);
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 .tour-opinions {

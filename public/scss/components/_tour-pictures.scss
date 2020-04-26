@@ -4,6 +4,7 @@
   -webkit-clip-path: polygon(0 9vw, 100% 0, 100% calc(100% - 9vw), 0 100%);
   position: relative;
   margin-top: -35rem;
+  z-index: 1;
 }
 
 .picture-box__img {

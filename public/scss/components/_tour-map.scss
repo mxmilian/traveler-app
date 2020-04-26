@@ -1,6 +1,13 @@
 .tour-map {
-  padding: 20rem 0;
-  background-color: #4fdbff;
+  position: relative;
   height: 75vh;
-  margin-top: -20rem;
+  margin-top: calc(0px - 9vw);
+
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
 }
