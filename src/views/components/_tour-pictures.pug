@@ -1,9 +1,6 @@
 mixin tour-pictures()
     section.tour-pictures
-        div.picture-box
-            img.picture-box__img.picture-box__img--1(src='/images/header-background.jpg', alt='The Park Camper Tour 1')
-        div.picture-box
-            img.picture-box__img.picture-box__img--2(src='/images/header-background.jpg', alt='The Park Camper Tour 1')
-        div.picture-box
-            img.picture-box__img.picture-box__img--3(src='/images/header-background.jpg', alt='The Park Camper Tour 1')
+        each img, index in tour.images
+            div.picture-box
+                img.picture-box__img(class=`picture-box__img--${index+1}`)(src=`/img/tours/${img}`, alt=`${tour.name}`)
 

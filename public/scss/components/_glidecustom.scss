@@ -37,7 +37,7 @@ $glide-modifier-separator: '--' !default;
   }
 
   &#{$se}slide {
-    width: 50%;
+    width: 10%;
     padding: 0 12rem;
     height: 100%;
     flex-shrink: 0;
@@ -48,7 +48,7 @@ $glide-modifier-separator: '--' !default;
     transition: all .4s;
 
     &:not(&--active) {
-      transform: translateY(20px);
+      transform: translateY(30px);
       opacity: .6;
     }
 

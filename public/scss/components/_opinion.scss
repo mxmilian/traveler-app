@@ -2,7 +2,7 @@
   box-shadow: 0 3rem 6rem rgba($shadow, .1);
   background-color: $white;
   border-radius: 2px;
-  padding: 6rem 6rem 6rem 9rem;
+  padding: 6rem 6rem 9rem 9rem;
   font-size: $default-font-size;
   transform: skewX(-12deg);
 
@@ -21,8 +21,10 @@
 
   &__image {
     height: 100%;
-    transform: translateX(-4rem) scale(1.4);
+    transform: scale(1);
     backface-visibility: hidden;
+    -o-object-position: 50% 50%;
+    object-position: 50% 50%;
     transition: all .5s;
   }
 
@@ -35,7 +37,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, 50%);
-    color: $white;
+    color: $lightness_primary;
     font-size: 1.7rem;
     text-transform: uppercase;
     text-align: center;
@@ -50,8 +52,10 @@
   }
 
   &:hover &__image {
-    transform: translateX(-4rem) scale(1);
+    transform: scale(0.6);
     -webkit-filter: blur(4px);
     filter: blur(4px);
+    -o-object-position: 50% 50%;
+    object-position: 50% 50%;
   }
 }
