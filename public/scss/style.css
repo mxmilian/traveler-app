@@ -711,7 +711,7 @@ body {
   border-bottom: 3px solid #ff2800;
 }
 .form__input::-webkit-input-placeholder {
-  color: #999999;
+  color: #999;
 }
 .form__label {
   font-size: 1.3rem;
@@ -820,10 +820,10 @@ body {
   font-size: 1.4rem;
   -moz-column-count: 2;
   -moz-column-gap: 4rem;
-  -moz-column-rule: 1px solid #999999;
+  -moz-column-rule: 1px solid #999;
   column-count: 2;
   column-gap: 4rem;
-  column-rule: 1px solid #999999;
+  column-rule: 1px solid #999;
   -moz-hyphens: auto;
   -ms-hyphens: auto;
   -webkit-hyphens: auto;
@@ -1054,6 +1054,58 @@ body {
   clip-path: polygon(0 9vw, 100% 0, 100% calc(100% - 9vw), 0 100%);
   -webkit-clip-path: polygon(0 9vw, 100% 0, 100% calc(100% - 9vw), 0 100%);
   background-image: linear-gradient(to right bottom, #4fdbff, #3ba4bf);
+}
+
+.login-section {
+  height: 100vh;
+  position: relative;
+}
+
+.login-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 340px;
+}
+
+.logo-box {
+  text-align: center;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+}
+.logo-box__img {
+  width: 100px;
+}
+.logo-box__text {
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+.form-box {
+  margin: 0 auto;
+  text-align: center;
+}
+.form-box__group {
+  display: block;
+}
+.form-box__group:not(:last-child) {
+  padding-bottom: 1.4rem;
+}
+.form-box__group--input {
+  text-align: left;
+  border: none;
+  padding: 1rem 4rem 0.8rem 0;
+  border-bottom: 1px solid #999;
+  outline: none;
+  text-transform: uppercase;
+}
+.form-box__group--button {
+  margin-top: 2rem;
+  border: none;
+  padding: 2rem 3rem;
+  text-transform: uppercase;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 .row {

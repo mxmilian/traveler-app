@@ -33,8 +33,13 @@ const getTour = catchAsync(async (req, res) => {
   });
 });
 
+const getLogin = (req, res) => {
+  res.status(200).render('login');
+};
+
 module.exports = {
   getHome,
   getTours,
-  getTour
+  getTour,
+  getLogin
 };

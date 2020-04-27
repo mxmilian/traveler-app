@@ -13,8 +13,6 @@ let map = new mapboxgl.Map({
 //Area  which will be display
 const bounds = new mapboxgl.LngLatBounds();
 
-let polyline =
-
 locations.forEach(loc => {
   //Create marker
   const el = document.createElement('div');

@@ -1,0 +1,19 @@
+extends base
+
+block content
+    section.login-section
+        form.login-form
+            div.logo-box
+                img(src='/images/login-mountains.svg').logo-box__img
+                p.logo-box__text
+                    | Sign in to create, discover and connect with the global community.
+
+            div.form-box
+                div.form-box__group
+                    input#username.form-box__group--input(type='name', placeholder='Email or name',
+                        autocomplete="off", required)
+                div.form-box__group
+                    input#password.form-box__group--input(type='password', placeholder='Password', required,
+                        minlength=8, autocomplete="off")
+                div.form-box__group
+                    button.form-box__group--button Sign in
