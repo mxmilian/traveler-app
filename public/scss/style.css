@@ -157,7 +157,6 @@ body {
 .btn, .btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
-  padding: 15px 40px;
   display: inline-block;
   transition: all 0.2s;
   position: relative;
@@ -205,15 +204,24 @@ body {
   background-color: rgba(79, 219, 255, 0.95);
 }
 .btn--header {
+  padding: 15px 40px;
   border-radius: 500px 500px 50px 50px;
 }
 .btn--header::after {
   border-radius: 500px 500px 50px 50px;
 }
 .btn--card {
+  padding: 15px 40px;
   border-radius: 500px;
 }
 .btn--card::after {
+  border-radius: 500px;
+}
+.btn--nav {
+  padding: 7px 40px;
+  border-radius: 500px;
+}
+.btn--nav::after {
   border-radius: 500px;
 }
 .btn--animate {
@@ -264,15 +272,6 @@ body {
   /* clip-path: polygon(50% 0, 0 100%, 25% 69%, 50% 15%, 65% 50%, 50% 50%, 18% 71%, 0 100%, 100% 100%, 50% 0); */
   -webkit-clip-path: polygon(100% 0, 100% 79%, 84% 87%, 62% 84%, 43% 91%, 19% 92%, 0 100%, 0 0);
   clip-path: polygon(100% 0, 100% 79%, 84% 87%, 62% 84%, 43% 91%, 19% 92%, 0 100%, 0 0);
-}
-.header__logo-box {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-}
-.header__logo {
-  height: 85px;
-  fill: #fff;
 }
 .header__text-box {
   position: absolute;
@@ -1105,6 +1104,48 @@ body {
   padding: 2rem 3rem;
   text-transform: uppercase;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.6s;
+  padding: 3rem 10rem;
+  z-index: 999;
+}
+.nav__logo {
+  position: relative;
+}
+.nav__logo--image {
+  height: 85px;
+}
+.nav__ul {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav__li {
+  position: relative;
+  list-style: none;
+}
+.nav__li:not(:last-child) {
+  padding-right: 1.5rem;
+}
+.nav__li--el {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav.sticky {
+  padding: 0.3rem 8rem;
+  background-color: rgba(79, 219, 255, 0.8);
 }
 
 .row {

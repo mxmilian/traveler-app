@@ -10,17 +10,6 @@
   -webkit-clip-path: polygon(100% 0, 100% 79%, 84% 87%, 62% 84%, 43% 91%, 19% 92%, 0 100%, 0 0);
   clip-path: polygon(100% 0, 100% 79%, 84% 87%, 62% 84%, 43% 91%, 19% 92%, 0 100%, 0 0);
 
-  &__logo-box {
-    position: absolute;
-    top: 30px;
-    left: 30px;
-  }
-
-  &__logo {
-    height: 85px;
-    fill: $white;
-  }
-
   &__text-box {
     position: absolute;
     top: 40%;

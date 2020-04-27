@@ -1,6 +1,48 @@
-.navbar {
-  width: 8rem;
-  height: 100vh;
-  background: black;
+.nav {
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: .6s;
+  padding: 3rem 10rem;
+  z-index: 999;
+  &__logo {
+    position: relative;
+
+    &--image {
+      height: 85px;
+    }
+  }
+
+  &__ul {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__li {
+    position: relative;
+    list-style: none;
+
+    &:not(:last-child){
+      padding-right: 1.5rem;
+    }
+
+    &--el {
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+
+    }
+
+  }
+}
+
+.nav.sticky {
+  padding: .3rem 8rem;
+  background-color: rgba($lightness_primary, .8);
 }
