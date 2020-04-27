@@ -10,10 +10,12 @@ block content
 
             div.form-box
                 div.form-box__group
-                    input#username.form-box__group--input(type='name', placeholder='Email or name',
+                    input#username.form-box__group--input(type='name', placeholder='EMAIL OR NAME',
                         autocomplete="off", required)
                 div.form-box__group
-                    input#password.form-box__group--input(type='password', placeholder='Password', required,
+                    input#password.form-box__group--input(type='password', placeholder='PASSWORD', required,
                         minlength=8, autocomplete="off")
                 div.form-box__group
                     button.form-box__group--button Sign in
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js')
+    script(src="./js/login.js")

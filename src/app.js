@@ -1,6 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
+const cookieParser = require('cookie-parser');
+//const cors = require('cors');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
@@ -9,6 +11,8 @@ const path = require('path');
 const { limitReq } = require('./middlewares/appProtect');
 
 const app = express();
+
+//app.use(cors());
 
 //Set the server-side rendering engine
 app.set('view engine', 'pug');
@@ -23,6 +27,7 @@ app.use('/api', limitReq);
 
 // Read max 10kb data from body into req.body
 app.use(express.json({ limit: '10kb' }));
+app.use(cookieParser());
 
 app.use(morgan('dev'));
 
@@ -49,6 +54,7 @@ app.use(
 app.use((req, res, next) => {
   console.clear();
   console.log(`I'am really happy that you use my app!💜`);
+  console.log(req.cookies);
   next();
 });
 

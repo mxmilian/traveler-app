@@ -19,13 +19,14 @@ const {
   changePassword
 } = require('../controllers/authController');
 
-const { protectRoute, restrictRoute } = require('../middlewares/authProtect');
 //one router for each of the resource
 const router = express.Router();
+router.patch('/activateAccount/:token', activateAccount);
+
+const { protectRoute, restrictRoute } = require('../middlewares/authProtect');
 
 //Mounting a new router on route
 router.post('/signUp', signUp);
-router.patch('/activateAccount/:token', activateAccount);
 router.post('/login', login);
 router.post('/forgotPassword', forgotPassword);
 router.patch('/resetPassword/:token', resetPassword);
