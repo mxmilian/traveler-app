@@ -556,6 +556,7 @@ body {
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  z-index: 3;
 }
 .glide__track {
   overflow: hidden;
@@ -1031,14 +1032,15 @@ body {
 }
 
 .marker {
-  background-color: black;
-  width: 30px;
-  height: 30px;
+  background-image: url("../../img/pin.png");
+  background-size: cover;
+  width: 32px;
+  height: 40px;
   cursor: pointer;
 }
 
 .tour-opinions {
-  margin-top: -20rem;
+  margin-top: -25rem;
   position: relative;
   padding: 23rem 0;
 }
@@ -1048,6 +1050,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 2;
   clip-path: polygon(0 9vw, 100% 0, 100% calc(100% - 9vw), 0 100%);
   -webkit-clip-path: polygon(0 9vw, 100% 0, 100% calc(100% - 9vw), 0 100%);
   background-image: linear-gradient(to right bottom, #4fdbff, #3ba4bf);

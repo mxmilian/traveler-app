@@ -1,8 +1,8 @@
 mixin tour-map()
     block append head
         script(src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js')
-        link(href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css')
+        link(href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet')
     section.tour-map
         //sending data from html to js
-        #map(data-locations=`${JSON.stringify(tour.locations)}`)
+        #map(data-locations=`${JSON.stringify(tour.locations)}`, data-token=`${MAPBOX_TOKEN}`)
     script(src="/js/mapbox.js")

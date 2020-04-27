@@ -28,6 +28,7 @@ const getTour = catchAsync(async (req, res) => {
   });
   res.status(200).render('tour', {
     title: tour.name,
+    MAPBOX_TOKEN: process.env.MAPBOX_TOKEN,
     tour
   });
 });
