@@ -1,4 +1,14 @@
 /* eslint-disable */
+/* eslint-disable */
+
+const showAlert = (type, msg) => {
+  console.log('siema');
+  const markup = `<div class='alert alert--${type}'>${msg}</div>`;
+  document
+    .querySelector('.login-section')
+    .insertAdjacentHTML('beforeend', markup);
+};
+
 const login = async (username, password) => {
   try {
     const res = await axios({
@@ -10,13 +20,13 @@ const login = async (username, password) => {
       }
     });
     if (res.data.status === 'success') {
+      showAlert('success', 'Sign in successfully! 🤗');
       window.setTimeout(() => {
         location.assign('/');
       }, 1000);
-      alert('Loged in successfully! 😎');
     }
   } catch (e) {
-    alert('Wrong username or password! ☹️');
+    showAlert('failure', 'Wrong e-mail or password 😡');
   }
 };
 
