@@ -160,8 +160,6 @@ body {
   display: inline-block;
   transition: all 0.2s;
   position: relative;
-  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.1);
-  border: none;
   cursor: pointer;
   font-size: 1.6rem;
 }
@@ -192,6 +190,8 @@ body {
 .btn--white {
   background-color: #fff;
   color: #666666;
+  border: none;
+  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.1);
 }
 .btn--white::after {
   background-color: #fff;
@@ -199,9 +199,27 @@ body {
 .btn--blue {
   background-color: rgba(79, 219, 255, 0.95);
   color: #fff;
+  border: none;
+  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.1);
 }
 .btn--blue::after {
   background-color: rgba(79, 219, 255, 0.95);
+}
+.btn--transparent {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.1);
+}
+.btn--transparent:hover {
+  background-color: white;
+  color: #666666;
+}
+.btn--transparent:hover::after {
+  background-color: white;
+}
+.btn--transparent::after {
+  background-color: transparent;
 }
 .btn--header {
   padding: 15px 40px;
