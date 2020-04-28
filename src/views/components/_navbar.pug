@@ -6,7 +6,7 @@ mixin navbar()
         ul.nav__ul
             if user
                 li.nav__li
-                    a(href='/login').nav__li--btn.btn.btn--transparent.btn--nav Log out
+                    a(href='#')#logout.nav__li--btn.btn.btn--transparent.btn--nav Log out
                 li.nav__li
                     a(href='#').nav__li--btn.btn.btn--white.btn--nav=user.name.split(' ')[0]
             else

@@ -14,6 +14,7 @@ const {
   signUp,
   activateAccount,
   login,
+  logout,
   forgotPassword,
   resetPassword,
   changePassword
@@ -28,6 +29,7 @@ const { protectRoute, restrictRoute } = require('../middlewares/authProtect');
 //Mounting a new router on route
 router.post('/signUp', signUp);
 router.post('/login', login);
+router.get('/logout', logout);
 router.post('/forgotPassword', forgotPassword);
 router.patch('/resetPassword/:token', resetPassword);
 

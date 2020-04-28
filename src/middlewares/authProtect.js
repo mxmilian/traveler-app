@@ -61,36 +61,40 @@ const restrictRoute = (...roles) => {
 };
 
 //Check if user is currently logged
-const isLoggedCurrently = catchAsync(async (req, res, next) => {
-  // 1) Check is token is existing
-  if (req.cookies.jwt) {
-    // 2) Verification token
-    const decoded = await promisify(jwt.verify)(
-      req.cookies.jwt,
-      process.env.JWT_SECRET
-    );
-
-    // 3) Check if user still exists
-    const isUserExists = await User.findById(decoded.id);
-    if (!isUserExists) return next();
-
-    // 4) Check if user changed password after the token was issued
-    if (isUserExists.passwordChangedAt) {
-      // eslint-disable-next-line radix
-      const changedTimestamp = parseInt(
-        isUserExists.passwordChangedAt.getTime() / 1000,
-        10
+const isLoggedCurrently = async (req, res, next) => {
+  try {
+    // 1) Check is token is existing
+    if (req.cookies.jwt) {
+      // 2) Verification token
+      const decoded = await promisify(jwt.verify)(
+        req.cookies.jwt,
+        process.env.JWT_SECRET
       );
 
-      if (changedTimestamp > decoded.iat) return next();
-    }
+      // 3) Check if user still exists
+      const isUserExists = await User.findById(decoded.id);
+      if (!isUserExists) return next();
 
-    //Create req.user to be available in next middleware
-    res.locals.user = isUserExists;
+      // 4) Check if user changed password after the token was issued
+      if (isUserExists.passwordChangedAt) {
+        // eslint-disable-next-line radix
+        const changedTimestamp = parseInt(
+          isUserExists.passwordChangedAt.getTime() / 1000,
+          10
+        );
+
+        if (changedTimestamp > decoded.iat) return next();
+      }
+
+      //Create req.user to be available in next middleware
+      res.locals.user = isUserExists;
+      return next();
+    }
+  } catch (e) {
     return next();
   }
   next();
-});
+};
 
 module.exports = {
   protectRoute,

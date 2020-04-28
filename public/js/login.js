@@ -1,8 +1,6 @@
 /* eslint-disable */
-/* eslint-disable */
 
 const showAlert = (type, msg) => {
-  console.log('siema');
   const markup = `<div class='alert alert--${type}'>${msg}</div>`;
   document
     .querySelector('.login-section')
