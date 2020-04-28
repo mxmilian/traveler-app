@@ -4,7 +4,13 @@ mixin navbar()
             a(href='/').nav__logo--href
                 img(src='/images/mountains.svg').nav__logo--image
         ul.nav__ul
-            li.nav__li
-                a(href='/login').nav__li--btn.btn.btn--white.btn--nav Sign in
-            li.nav__li
-                a(href='#').nav__li--btn.btn.btn--white.btn--nav Register
+            if user
+                li.nav__li
+                    a(href='/login').nav__li--btn.btn.btn--white.btn--nav sadsa
+                li.nav__li
+                    a(href='#').nav__li--btn.btn.btn--white.btn--nav Log out
+            else
+                li.nav__li
+                    a(href='/login').nav__li--btn.btn.btn--white.btn--nav Sign in
+                li.nav__li
+                    a(href='#').nav__li--btn.btn.btn--white.btn--nav Register
