@@ -6,9 +6,9 @@ mixin navbar()
         ul.nav__ul
             if user
                 li.nav__li
-                    a(href='/login').nav__li--btn.btn.btn--white.btn--nav sadsa
+                    a(href='/login').nav__li--btn.btn.btn--transparent.btn--nav Log out
                 li.nav__li
-                    a(href='#').nav__li--btn.btn.btn--white.btn--nav Log out
+                    a(href='#').nav__li--btn.btn.btn--white.btn--nav=user.name.split(' ')[0]
             else
                 li.nav__li
                     a(href='/login').nav__li--btn.btn.btn--transparent.btn--nav Sign in

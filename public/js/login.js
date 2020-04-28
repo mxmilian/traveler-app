@@ -8,10 +8,15 @@ const login = async (username, password) => {
         email: username,
         password
       }
-    })
-    console.log(res);
+    });
+    if (res.data.status === 'success') {
+      window.setTimeout(() => {
+        location.assign('/');
+      }, 1000);
+      alert('Loged in successfully! 😎');
+    }
   } catch (e) {
-    console.log(e.response.data);
+    alert('Wrong username or password! ☹️');
   }
 };
 
