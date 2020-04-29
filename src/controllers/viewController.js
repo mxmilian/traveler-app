@@ -1,7 +1,7 @@
 const axios = require('axios').default;
 const catchAsync = require('../errors/catchAsync');
 const Tour = require('../models/tourModel');
-//const Errors = require('../errors/errorsClass');
+const Errors = require('../errors/errorsClass');
 
 const getHome = catchAsync(async (req, res, next) => {
   const query = await axios.get(`${process.env.URL}/tours/top3`);
@@ -21,11 +21,16 @@ const getTours = catchAsync(async (req, res) => {
   });
 });
 
-const getTour = catchAsync(async (req, res) => {
+const getTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findOne({ slug: req.params.slug }).populate({
     path: 'reviews',
     fields: 'review rating user'
   });
+
+  if (!tour) {
+    return next(new Errors('I did not found anything 🙈', 404));
+  }
+
   res.status(200).render('tour', {
     title: tour.name,
     MAPBOX_TOKEN: process.env.MAPBOX_TOKEN,

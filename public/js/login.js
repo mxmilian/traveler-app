@@ -24,7 +24,7 @@ const login = async (username, password) => {
       }, 1000);
     }
   } catch (e) {
-    showAlert('failure', 'Wrong e-mail or password 😡');
+    showAlert('failure', e.response.data.message);
   }
 };
 
