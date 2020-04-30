@@ -8,7 +8,8 @@ const {
   getHome,
   getTours,
   getTour,
-  getLogin
+  getLogin,
+  getMe
 } = require('../controllers/viewController');
 
 router.use(isLoggedCurrently);
@@ -17,5 +18,6 @@ router.get('/', getHome);
 router.get('/tours', getTours);
 router.get('/tours/:slug', getTour);
 router.get('/login', getLogin);
+router.get('/me', getMe);
 
 module.exports = router;

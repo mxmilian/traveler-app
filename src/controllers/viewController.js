@@ -42,9 +42,14 @@ const getLogin = (req, res) => {
   res.status(200).render('login');
 };
 
+const getMe = (req, res) => {
+  res.status(200).render('account');
+};
+
 module.exports = {
   getHome,
   getTours,
   getTour,
-  getLogin
+  getLogin,
+  getMe
 };

@@ -4,6 +4,19 @@
     margin-bottom: 1rem;
   }
 
+  &__photo-upload {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+  }
+
+  &__user-photo {
+    height: 7.5rem;
+    width: 7.5rem;
+    border-radius: 50%;
+    margin-right: 2rem;
+  }
+
   &__input {
     font-size: 1.5rem;
     font-family: inherit;

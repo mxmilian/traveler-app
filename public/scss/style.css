@@ -42,7 +42,7 @@ html {
     font-size: 50%;
   }
 }
-@media (min-width: 112.5em) {
+@media (min-width: 150em) {
   html {
     font-size: 75%;
   }
@@ -834,6 +834,17 @@ body {
 .form__group:not(:last-child) {
   margin-bottom: 1rem;
 }
+.form__photo-upload {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+}
+.form__user-photo {
+  height: 7.5rem;
+  width: 7.5rem;
+  border-radius: 50%;
+  margin-right: 2rem;
+}
 .form__input {
   font-size: 1.5rem;
   font-family: inherit;
@@ -1355,6 +1366,83 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.account-section {
+  margin: 8rem auto;
+  background-color: #f5f5f5;
+  max-width: 120rem;
+  min-height: 85vh;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.8);
+  display: flex;
+}
+.account-section__menu {
+  flex: 32rem 0 0;
+  background-image: linear-gradient(to right bottom, #3ba4bf, #4fdbff);
+  padding: 4rem 0;
+}
+.account-section__content {
+  flex: 1;
+  margin-top: 2rem;
+}
+.account-section__form-container {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 8rem;
+}
+
+.side-nav {
+  list-style: none;
+}
+.side-nav--active {
+  border-left: 4px solid #fff !important;
+}
+.side-nav--active a {
+  transform: translateX(-3px);
+}
+.side-nav li {
+  margin: 1rem 0;
+  border-left: 0 solid #fff;
+  transition: all 0.3s;
+}
+.side-nav li:hover {
+  border-left: 4px solid #fff !important;
+}
+.side-nav li a:link,
+.side-nav li a:visited {
+  padding: 1rem 4rem;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.side-nav li a:link,
+.side-nav li a:visited {
+  transform: translateX(3px);
+}
+.side-nav li svg {
+  height: 1.9rem;
+  width: 1.9rem;
+  fill: white;
+  margin-right: 2rem;
+}
+
+.admin-nav {
+  margin-top: 5.5rem;
+}
+.admin-nav__heading {
+  margin: 0 5rem 1.5rem 4rem;
+  padding-bottom: 0.3rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #fff;
+  border-bottom: 1px solid currentColor;
 }
 
 .row {

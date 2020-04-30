@@ -1,0 +1,89 @@
+.account-section {
+  margin: 8rem auto;
+  background-color: $page-background;
+  max-width: 120rem;
+  min-height: 85vh;
+  border-radius: .3rem;
+  overflow: hidden;
+  box-shadow: 0 2.5rem 8rem 2rem rgba($shadow, .8);
+  display: flex;
+
+  &__menu {
+    flex: 32rem 0 0;
+    background-image: linear-gradient(to right bottom, $medium_primary, $lightness_primary);
+    padding: 4rem 0;
+  }
+
+  &__content {
+    flex: 1;
+    margin-top: 2rem;
+  }
+
+  &__form-container {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 0 8rem;
+  }
+}
+
+.side-nav {
+  list-style: none;
+
+  &--active {
+    border-left: 4px solid $white !important;
+
+    a {
+      transform: translateX(-3px);
+    }
+  }
+
+
+  li {
+    margin: 1rem 0;
+    border-left: 0 solid $white;
+    transition: all .3s;
+
+
+    &:hover {
+      border-left: 4px solid $white !important;
+    }
+
+    a:link,
+    a:visited {
+      padding: 1rem 4rem;
+      display: flex;
+      align-items: center;
+      color: $white;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      font-weight: 400;
+      text-decoration: none;
+      transition: all .3s;
+    }
+
+    a:link,
+    a:visited {
+      transform: translateX(3px);
+    }
+
+    svg {
+      height: 1.9rem;
+      width: 1.9rem;
+      fill: white;
+      margin-right: 2rem;
+    }
+  }
+}
+
+.admin-nav {
+  margin-top: 5.5rem;
+
+  &__heading {
+    margin: 0 5rem 1.5rem 4rem;
+    padding-bottom: .3rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: $white;
+    border-bottom: 1px solid currentColor;
+  }
+}
