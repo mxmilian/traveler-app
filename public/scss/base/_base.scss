@@ -7,13 +7,29 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 62.5%; //1rem === 10px
+
+
+  @include respond(tab-land) { //1rem = 9px <1200
+    font-size: 56.25%;
+  }
+
+  @include respond(tab-port) { //1rem = 8px <900
+    font-size: 50%;
+  }
+
+  //@include respond(phone) { //1rem = 6px <600
+  //  font-size: 37.5%;
+  //}
+
+  @include respond(big-desk) { //1rem = 12px
+    font-size: 75%;
+  }
 }
 
 body {
   font-family: 'Lato', sans-serif;
   font-weight: 400;
-  font-size: $default-font-size;
   line-height: 1.7;
   color: $text-dark;
 }

@@ -1,4 +1,26 @@
 @charset "UTF-8";
+/*
+
+0 - 600px phones
+
+600px - 900px tablet portrait
+
+900px - 1200px  Tablet landscape
+
+1200px - 1800px normal desktop
+
+1800px+ Big desktop
+
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- desk
+-big-desk
+
+1em === 16px
+
+ */
 *,
 *::after,
 *::before {
@@ -10,11 +32,25 @@
 html {
   font-size: 62.5%;
 }
+@media (max-width: 75em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+@media (max-width: 56.25em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media (min-width: 112.5em) {
+  html {
+    font-size: 75%;
+  }
+}
 
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  font-size: 1.6rem;
   line-height: 1.7;
   color: #666666;
 }
