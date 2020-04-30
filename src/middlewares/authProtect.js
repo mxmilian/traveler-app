@@ -47,6 +47,7 @@ const protectRoute = catchAsync(async (req, res, next) => {
   }
 
   //Create req.user to be available in next middleware
+  res.locals.user = isUserExists;
   req.user = isUserExists;
   next();
 });

@@ -2,7 +2,10 @@ const express = require('express');
 
 const router = express.Router();
 
-const { isLoggedCurrently } = require('../middlewares/authProtect');
+const {
+  isLoggedCurrently,
+  protectRoute
+} = require('../middlewares/authProtect');
 
 const {
   getHome,
@@ -12,12 +15,10 @@ const {
   getMe
 } = require('../controllers/viewController');
 
-router.use(isLoggedCurrently);
-
-router.get('/', getHome);
-router.get('/tours', getTours);
-router.get('/tours/:slug', getTour);
-router.get('/login', getLogin);
-router.get('/me', getMe);
+router.get('/', isLoggedCurrently, getHome);
+router.get('/tours', isLoggedCurrently, getTours);
+router.get('/tours/:slug', isLoggedCurrently, getTour);
+router.get('/login', isLoggedCurrently, getLogin);
+router.get('/me', protectRoute, getMe);
 
 module.exports = router;
