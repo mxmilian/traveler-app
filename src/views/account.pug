@@ -35,7 +35,7 @@ block content
                 .line &nbsp;
                 .user-view__form-container
                     h2.heading-secondary-tour.u-margin-bottom-smallest Password change
-                    form.form.form-user-settings
+                    form.form.form-user-password
                         .form__group
                             label.form__label(for='password-current') Current password
                             input#password-current.form__input(type='password', placeholder='••••••••', required, minlength='8')
@@ -46,5 +46,5 @@ block content
                             label.form__label(for='password-confirm') Confirm password
                             input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
                         .form__group.right
-                            button.btn.btn--card.btn--blue Save password
+                            button.btn.btn--card.btn--blue.btn--save-password Save password
         script(src="./js/updateSettings.js")
