@@ -1,7 +1,7 @@
 .opinion {
   box-shadow: 0 3rem 6rem rgba($shadow, .1);
   background-color: $white;
-  border-radius: 2px;
+  border-radius: .2rem;
   padding: 6rem 6rem 9rem 9rem;
   font-size: $default-font-size;
   transform: skewX(-12deg);
@@ -53,8 +53,8 @@
 
   &:hover &__image {
     transform: scale(0.6);
-    -webkit-filter: blur(4px);
-    filter: blur(4px);
+    -webkit-filter: blur(.4rem);
+    filter: blur(.4rem);
     -o-object-position: 50% 50%;
     object-position: 50% 50%;
   }

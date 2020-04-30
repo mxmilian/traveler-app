@@ -96,7 +96,7 @@
 
       &::before {
         content: '★★★★★';
-        letter-spacing: 3px;
+        letter-spacing: .3rem;
         background: linear-gradient(90deg, $lightness_primary $percent, $page-background $percent);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
