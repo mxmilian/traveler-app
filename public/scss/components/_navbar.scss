@@ -9,6 +9,13 @@
   transition: .6s;
   padding: 3rem 10rem;
   z-index: 999;
+
+  @include respond(tab-port) {
+    padding: 2rem 6rem;
+  }
+  @include respond(phone) {
+    padding: 1rem 2rem;
+  }
   &__logo {
     position: relative;
 
@@ -36,7 +43,6 @@
       position: relative;
       text-decoration: none;
       color: inherit;
-
     }
 
   }
@@ -45,4 +51,10 @@
 .nav.sticky {
   padding: .3rem 8rem;
   background-color: rgba($lightness_primary, .8);
+  @include respond(tab-port) {
+    padding: .3rem 4rem;
+  }
+  @include respond(phone) {
+    padding: .3rem 2rem;
+  }
 }

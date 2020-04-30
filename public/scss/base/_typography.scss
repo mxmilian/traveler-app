@@ -4,8 +4,6 @@
   backface-visibility: hidden;
   margin-bottom: 8rem;
 
-
-
   &--main {
     display: block;
     font-size: 6rem;
@@ -14,6 +12,11 @@
     animation-name: moveInLeft;
     animation-duration: 2s;
     animation-timing-function: ease-in;
+
+    @include respond(phone) {
+      letter-spacing: 1rem;
+      font-size: 5rem;
+    }
   }
 
   &--sub {
@@ -24,6 +27,10 @@
     animation-name: moveInRight;
     animation-duration: 2s;
     animation-timing-function: ease-in;
+
+    @include respond(phone) {
+      letter-spacing: .5rem;
+    }
   }
 }
 
