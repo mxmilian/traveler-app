@@ -1,3 +1,4 @@
+const multer = require('multer');
 const User = require('../models/userModel');
 const Errors = require('../errors/errorsClass');
 const catchAsync = require('../errors/catchAsync');
@@ -8,6 +9,32 @@ const {
   updateOne,
   deleteOne
 } = require('./crudFactory');
+
+const multerStorage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, './public/images/users');
+  },
+  filename: (req, file, callback) => {
+    //userID-timestamp-extension
+    const extension = file.mimetype.split('/')[1];
+    callback(null, `user-${req.user.id}-${Date.now()}.${extension}`);
+  }
+});
+
+const multerFilter = (req, file, callback) => {
+  if (file.mimetype.startsWith('image')) {
+    callback(null, true);
+  } else {
+    callback(new Errors('This is not an image!', 400), false);
+  }
+};
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter
+});
+
+const uploadPhoto = upload.single('photo');
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -82,5 +109,6 @@ module.exports = {
   readMe,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  uploadPhoto
 };
