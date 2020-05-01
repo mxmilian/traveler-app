@@ -29,7 +29,10 @@ const userSchema = new mongoose.Schema({
       message: 'This is not an e-mail! 👿'
     }
   },
-  photo: String,
+  photo: {
+    type: String,
+    default: 'default.jpg'
+  },
   password: {
     type: String,
     required: [true, 'Password is required!👿'],

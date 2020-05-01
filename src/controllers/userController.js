@@ -46,15 +46,13 @@ const filterObj = (obj, ...allowedFields) => {
 
 //Routes handlers
 const updateMe = catchAsync(async (req, res, next) => {
-  console.log(req.file);
-  console.log(req.body);
-
   // 1) Check if user is trying to update password here
   if (req.body.password || req.body.confirmPassword)
     return next(new Errors('Cannot do this here!👿'), 401);
 
   // 3) Filter req
   const filterReq = filterObj(req.body, 'name', 'email');
+  if (req.file) filterReq.photo = req.file.filename;
 
   // 2) Update user
   const user = await User.findByIdAndUpdate(
