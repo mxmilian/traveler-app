@@ -9,7 +9,9 @@ const {
   aliasTopTours,
   getMonthlyPlan,
   getToursWithin,
-  getDistances
+  getDistances,
+  uploadTourImages,
+  resizeTourImages
 } = require('../controllers/tourController');
 
 const { protectRoute, restrictRoute } = require('../middlewares/authProtect');
@@ -31,7 +33,7 @@ router
   .route('/tours-within/:distance/center/:latlng/unit/:unit')
   .get(getToursWithin);
 
-router.route('/distances/:latlng/unit/:unit').get(getDistances)
+router.route('/distances/:latlng/unit/:unit').get(getDistances);
 
 router
   .route('/')
@@ -41,7 +43,13 @@ router
 router
   .route('/:id')
   .get(readTour)
-  .patch(protectRoute, restrictRoute('admin', 'moderator'), updateTour)
+  .patch(
+    protectRoute,
+    restrictRoute('admin', 'moderator'),
+    uploadTourImages,
+    resizeTourImages,
+    updateTour
+  )
   .delete(protectRoute, restrictRoute('admin', 'moderator'), deleteTour);
 
 //Nested routers (review)

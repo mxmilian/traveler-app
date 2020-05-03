@@ -2,5 +2,6 @@ mixin tour-pictures()
     section.tour-pictures
         each img, index in tour.images
             div.picture-box
-                img.picture-box__img(class=`picture-box__img--${index+1}`)(src=`/img/tours/${img}`, alt=`${tour.name}`)
+                img.picture-box__img(class=`picture-box__img--${index+1}`)(src=`/images/tours/${img}`, alt=`${tour
+                  .name}`)
 

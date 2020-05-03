@@ -4,15 +4,25 @@ mixin tour-opinions
         div.glide
             div(data-glide-el="track").glide__track
                 ul.glide__slides
-                    each opinion in tour.reviews
+                    -if(tour.reviews.lenght===0)
+                        each opinion in tour.reviews
+                            li.glide__slide
+                                div.opinion
+                                    figure.opinion__shape
+                                        img(src=`/images/users/${opinion.user.photo}` alt=`${opinion.user.name}`).opinion__image
+                                        figcaption.opinion__caption=opinion.user.name
+                                    div.opinion__text
+                                        h3.heading-tertiary.u-margin-bottom-small=opinion.user.name
+                                        p.opinion-box__text=opinion.review
+                    -else
                         li.glide__slide
                             div.opinion
                                 figure.opinion__shape
-                                    img(src=`/img/users/${opinion.user.photo}` alt=`${opinion.user.name}`).opinion__image
-                                    figcaption.opinion__caption=opinion.user.name
+                                    img(src=`/img/users/default.jpg` alt=`default photo`).opinion__image
+                                    figcaption.opinion__caption='Default user'
                                 div.opinion__text
-                                    h3.heading-tertiary.u-margin-bottom-small=opinion.user.name
-                                    p.opinion-box__text=opinion.review
+                                    h3.heading-tertiary.u-margin-bottom-small='There is no opinion yet'
+                                    p.opinion-box__text='There is no opinion yet'
             div(data-glide-el="controls[nav]").glide__bullets.u-margin-top-big
                 each placeholder, index in tour.reviews
                     button(data-glide-dir=`=${index}`).glide__bullet
