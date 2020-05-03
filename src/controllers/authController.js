@@ -4,7 +4,7 @@ const crypto = require('crypto');
 const User = require('../models/userModel');
 const catchAsync = require('../errors/catchAsync');
 const Errors = require('../errors/errorsClass');
-const sendEmail = require('../utils/email');
+const Email = require('../utils/email');
 
 const signToken = id => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -51,16 +51,12 @@ const signUp = catchAsync(async (req, res, next) => {
     const activateUrl = `${req.protocol}://${req.get(
       'host'
     )}/api/v1/users/activateAccount/${activateToken}`;
-    await sendEmail({
-      email: newUser.email,
-      subject: 'Activate account',
-      message: `Activate your account by clicking here ${activateUrl}.`
-    });
+    await new Email(req.user, activateUrl).sendConfirm();
     console.log(activateUrl);
     res.status(201).json({
       status: 'success',
       data: {
-        message: 'Account created, please confirm your e-mail!📧'
+        message: 'Sign up successfully!🤗 Confirm your e-mail!📧'
       }
     });
   } catch (e) {

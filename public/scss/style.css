@@ -1222,7 +1222,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 3.4rem;
+  max-width: 34rem;
 }
 
 .logo-box {
@@ -1443,6 +1443,14 @@ body {
   text-transform: uppercase;
   color: #fff;
   border-bottom: 1px solid currentColor;
+}
+
+.register-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 34rem;
 }
 
 .row {

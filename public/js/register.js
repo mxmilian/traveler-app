@@ -7,15 +7,12 @@ const showAlert = (type, msg) => {
     .insertAdjacentHTML('beforeend', markup);
 };
 
-const login = async (username, password) => {
+const register = async data => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:1337/api/v1/users/login',
-      data: {
-        email: username,
-        password
-      }
+      url: 'http://localhost:1337/api/v1/users/signup',
+      data
     });
     if (res.data.status === 'success') {
       showAlert('success', res.data.message);
@@ -28,9 +25,12 @@ const login = async (username, password) => {
   }
 };
 
-document.querySelector('.login-form').addEventListener('submit', e => {
+document.querySelector('.register-form').addEventListener('submit', e => {
   e.preventDefault();
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-  login(username, password);
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('reg-email').value;
+  const password = document.getElementById('reg-password').value;
+  const confirmPassword = document.getElementById('reg-password-conf').value;
+
+  register({ name, email, password, confirmPassword });
 });
