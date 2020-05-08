@@ -51,8 +51,7 @@ const signUp = catchAsync(async (req, res, next) => {
     const activateUrl = `${req.protocol}://${req.get(
       'host'
     )}/api/v1/users/activateAccount/${activateToken}`;
-    await new Email(req.user, activateUrl).sendConfirm();
-    console.log(activateUrl);
+    await new Email(newUser, activateUrl).sendConfirm();
     res.status(201).json({
       status: 'success',
       data: {
@@ -97,9 +96,15 @@ const login = catchAsync(async (req, res, next) => {
     return next(new Errors('Please input email and password!✍️', 400));
 
   // 2) Check if user exists && password is correct
-  const user = await User.findOne({ email }).select('+password');
+  const user = await User.findOne({ email }).select('+password active');
   if (!user || !(await bcrypt.compare(password, user.password)))
     return next(new Errors('Email and password are not correct! ☠️', 401));
+
+  console.log(user.active);
+  if (!user.active)
+    return next(
+      new Errors('Your account is not active, please check email! ☠️', 401)
+    );
 
   // 3) Send token to client which req
   createSendToken(user, 200, res);
@@ -122,16 +127,16 @@ const forgotPassword = catchAsync(async (req, res, next) => {
   const resetToken = user.createPassResToken();
   await user.save({ validateBeforeSave: false });
 
-  const resetURL = `${req.protocol}://${req.get(
-    'host'
-  )}/api/v1/users/resetPassword/${resetToken}`;
+  // const resetURL = `${req.protocol}://${req.get(
+  //   'host'
+  // )}/api/v1/users/resetPassword/${resetToken}`;
 
   try {
-    await sendEmail({
-      email: user.email,
-      subject: 'Reset your password 🧐 (10 minutes)',
-      message: `Reset your password by clicking here ${resetURL}.`
-    });
+    // await sendEmail({
+    //   email: user.email,
+    //   subject: 'Reset your password 🧐 (10 minutes)',
+    //   message: `Reset your password by clicking here ${resetURL}.`
+    // });
     console.log(resetToken);
 
     res.status(200).json({

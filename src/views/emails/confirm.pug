@@ -1,0 +1,21 @@
+extends emailBase
+
+block content
+    p Hi #{name},
+        p Welcome to Traveler! 🏔
+        p
+            | Confirm your email and join to our
+            | family!👨‍👨‍👧‍👦👨‍👩‍👦👩‍👩‍👧‍👧
+        table.btn.btn-primary(role='presentation', border='0', cellpadding='0', cellspacing='0')
+            tbody
+                tr
+                    td(align='left')
+                        table(role='presentation', border='0', cellpadding='0', cellspacing='0')
+                            tbody
+                                tr
+                                    td
+                                        a(href=`${url}`,
+                                            target='_blank')
+                                            | Confirm your email!
+        p - mxmilian
+        a(href='https://github.com/mxmilian', target='_blank') Github

@@ -25,7 +25,7 @@ const {
 
 //one router for each of the resource
 const router = express.Router();
-router.patch('/activateAccount/:token', activateAccount);
+router.get('/activateAccount/:token', activateAccount);
 
 const { protectRoute, restrictRoute } = require('../middlewares/authProtect');
 
