@@ -127,18 +127,11 @@ const forgotPassword = catchAsync(async (req, res, next) => {
   const resetToken = user.createPassResToken();
   await user.save({ validateBeforeSave: false });
 
-  // const resetURL = `${req.protocol}://${req.get(
-  //   'host'
-  // )}/api/v1/users/resetPassword/${resetToken}`;
-
   try {
-    // await sendEmail({
-    //   email: user.email,
-    //   subject: 'Reset your password 🧐 (10 minutes)',
-    //   message: `Reset your password by clicking here ${resetURL}.`
-    // });
-    console.log(resetToken);
-
+    const resetURL = `${req.protocol}://${req.get(
+      'host'
+    )}/api/v1/users/resetPassword/${resetToken}`;
+    await new Email(user, resetURL).sendPasswordReset();
     res.status(200).json({
       status: 'success',
       data: {

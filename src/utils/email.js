@@ -53,6 +53,13 @@ class Email {
   async sendConfirm() {
     await this.sendTemplate('confirm', 'Confirm email, and Welcome! 💜');
   }
+
+  async sendPasswordReset() {
+    await this.sendTemplate(
+      'passwordReset',
+      'Reset your password without problems! 💜 (Your token is valid 10 minutes)'
+    );
+  }
 }
 
 module.exports = Email;
