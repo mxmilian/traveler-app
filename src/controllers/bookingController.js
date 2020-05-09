@@ -16,7 +16,7 @@ const getCheckoutSession = catchAsync(async (req, res, next) => {
     client_reference_id: req.params.tourID,
     line_items: [
       {
-        name: `${tour.name} TOUR`,
+        name: `${tour.name} Tour`,
         description: tour.summary,
         //dummy photo
         images: [

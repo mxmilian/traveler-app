@@ -9,14 +9,17 @@ const bookTour = async tourID => {
 
     await stripe.redirectToCheckout({
       sessionId: session.data.session.id
-    })
+    });
   } catch (e) {
     console.log(e);
   }
 };
 
 const bookBtn = document.getElementById('book-tour');
-bookBtn.addEventListener('click', e => {
-  e.target.textContent = 'Processing...';
-  bookTour(e.target.dataset.tourId);
-});
+
+if (bookBtn) {
+  bookBtn.addEventListener('click', e => {
+    e.target.textContent = 'Processing...';
+    bookTour(e.target.dataset.tourId);
+  });
+}
