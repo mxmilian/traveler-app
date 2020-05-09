@@ -1025,7 +1025,7 @@ body {
 
 .tour-heading {
   position: absolute;
-  top: 35%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -1033,6 +1033,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 6rem;
 }
 .tour-heading__heading {
   color: #fff;
@@ -1076,6 +1077,10 @@ body {
 }
 .tour-heading__text {
   color: #fff;
+}
+.tour-heading__button {
+  display: block;
+  margin: 0 auto;
 }
 
 .tour-main {

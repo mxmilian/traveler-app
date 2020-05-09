@@ -18,7 +18,10 @@ const getCheckoutSession = catchAsync(async (req, res, next) => {
       {
         name: `${tour.name} TOUR`,
         description: tour.summary,
-        //images: [],
+        //dummy photo
+        images: [
+          'https://images.pexels.com/photos/9754/mountains-clouds-forest-fog.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+        ],
         amount: tour.price * 100,
         currency: 'usd',
         quantity: 1

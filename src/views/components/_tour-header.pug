@@ -1,4 +1,6 @@
 mixin tour-header(pic, name, duration, desc)
+    block append head
+        script(src='https://js.stripe.com/v3/')
     section.tour-header
         div.tour-header__overlay
         img(src=`/images/tours/${pic}` alt=name).tour-header__img
@@ -14,3 +16,10 @@ mixin tour-header(pic, name, duration, desc)
                     svg.tour-heading__icon
                         use(xlink:href='/img/icons.svg#icon-map-pin')
                     span.tour-heading__text=desc
+            if user
+                button#book-tour(data-tour-id=`${tour.id}`).tour-heading__button.btn.btn--card.btn--blue
+                    | BOOKING TOUR!
+            else
+                a(href='/login').tour-heading__button.btn.btn--card.btn--blue
+                    | LOGIN TO BOOKING!
+    script(src="/js/stripe.js")
