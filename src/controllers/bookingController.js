@@ -1,5 +1,6 @@
 const Stripe = require('stripe');
 const Tour = require('../models/tourModel');
+const Booking = require('../models/bookingModel');
 const catchAsync = require('../errors/catchAsync');
 
 const getCheckoutSession = catchAsync(async (req, res, next) => {
@@ -8,7 +9,11 @@ const getCheckoutSession = catchAsync(async (req, res, next) => {
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
-    success_url: `${req.protocol}://${req.get('host')}/`,
+    //---Temporary solution for creating new booking dosc in db, until deploy
+    success_url: `${req.protocol}://${req.get('host')}/?tour=${
+      req.params.tourID
+    }&user=${req.user.id}&price=${tour.price}`,
+    //---
     cancel_url: `${req.protocol}://${req.get('host')}/tours/${tour.slug}`,
     customer_email: req.user.email,
     //This field allows us pass some data ab session that we are currently creating(When the purchase was successful
@@ -35,4 +40,13 @@ const getCheckoutSession = catchAsync(async (req, res, next) => {
   });
 });
 
-module.exports = { getCheckoutSession };
+const createBookingCheckout = catchAsync(async (req, res, next) => {
+  //TEMPORARY
+  const { tour, user, price } = req.query;
+  if (!tour || !user || !price) return next();
+
+  await Booking.create({ tour, user, price });
+  res.redirect(req.originalUrl.split('?')[0]);
+});
+
+module.exports = { getCheckoutSession, createBookingCheckout };

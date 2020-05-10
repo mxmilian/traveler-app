@@ -16,7 +16,10 @@ const {
   getMe
 } = require('../controllers/viewController');
 
-router.get('/', isLoggedCurrently, getHome);
+//TEMPORARY!
+const { createBookingCheckout } = require('../controllers/bookingController');
+
+router.get('/', isLoggedCurrently, createBookingCheckout, getHome);
 router.get('/tours', isLoggedCurrently, getTours);
 router.get('/tours/:slug', isLoggedCurrently, getTour);
 router.get('/login', isLoggedCurrently, getLogin);
