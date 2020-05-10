@@ -12,7 +12,7 @@ const signToken = id => {
   });
 };
 
-const createSendToken = (user, statusCode, res) => {
+const createSendToken = (user, statusCode, res, message) => {
   const token = signToken(user._id);
 
   res.cookie('jwt', token, {
@@ -29,6 +29,7 @@ const createSendToken = (user, statusCode, res) => {
     status: 'success',
     data: {
       token,
+      message,
       user
     }
   });
@@ -84,7 +85,9 @@ const activateAccount = catchAsync(async (req, res, next) => {
 
   await user.save({ validateBeforeSave: false });
 
-  createSendToken(user, 201, res);
+  const message = 'Now your account is active! Welcome 💜';
+
+  createSendToken(user, 201, res, message);
 });
 
 //Request to login user
@@ -106,8 +109,10 @@ const login = catchAsync(async (req, res, next) => {
       new Errors('Your account is not active, please check email! ☠️', 401)
     );
 
+  const message = 'Login successful! Welcome 🏔';
+
   // 3) Send token to client which req
-  createSendToken(user, 200, res);
+  createSendToken(user, 200, res, message);
 });
 
 //Request to logout user
@@ -189,8 +194,10 @@ const changePassword = catchAsync(async (req, res, next) => {
   user.confirmPassword = req.body.confirmPassword;
   await user.save();
 
+  const message = '';
+
   // 4) Log user in, send JWT
-  createSendToken(user, 200, res);
+  createSendToken(user, 200, res, message);
 });
 
 module.exports = {
