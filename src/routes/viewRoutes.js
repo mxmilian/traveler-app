@@ -13,7 +13,8 @@ const {
   getTour,
   getLogin,
   getRegister,
-  getMe
+  getMe,
+  getMyTours
 } = require('../controllers/viewController');
 
 //TEMPORARY!
@@ -25,5 +26,6 @@ router.get('/tours/:slug', isLoggedCurrently, getTour);
 router.get('/login', isLoggedCurrently, getLogin);
 router.get('/register', isLoggedCurrently, getRegister);
 router.get('/me', protectRoute, getMe);
+router.get('/my-tours', protectRoute, getMyTours);
 
 module.exports = router;
