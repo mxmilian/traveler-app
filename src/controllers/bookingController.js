@@ -3,6 +3,14 @@ const Tour = require('../models/tourModel');
 const Booking = require('../models/bookingModel');
 const catchAsync = require('../errors/catchAsync');
 
+const {
+  createOne,
+  readAll,
+  readOne,
+  updateOne,
+  deleteOne
+} = require('./crudFactory');
+
 const getCheckoutSession = catchAsync(async (req, res, next) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
   const tour = await Tour.findById(req.params.tourID);
@@ -49,4 +57,20 @@ const createBookingCheckout = catchAsync(async (req, res, next) => {
   res.redirect(req.originalUrl.split('?')[0]);
 });
 
-module.exports = { getCheckoutSession, createBookingCheckout };
+const readAllBookings = readAll(Booking);
+const readBooking = readOne(Booking, {
+  path: 'users'
+});
+const createBooking = createOne(Booking);
+const updateBooking = updateOne(Booking);
+const deleteBooking = deleteOne(Booking);
+
+module.exports = {
+  getCheckoutSession,
+  createBookingCheckout,
+  readAllBookings,
+  readBooking,
+  createBooking,
+  updateBooking,
+  deleteBooking
+};
