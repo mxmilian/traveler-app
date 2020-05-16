@@ -212,6 +212,20 @@ body {
     letter-spacing: 0.5rem;
   }
 }
+.heading-primary--act {
+  display: block;
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.4rem;
+  animation-name: moveInRight;
+  animation-duration: 2s;
+  animation-timing-function: ease-in;
+}
+@media (max-width: 37.5em) {
+  .heading-primary--act {
+    letter-spacing: 0.5rem;
+  }
+}
 
 .heading-secondary {
   font-size: 3.5rem;
@@ -1457,6 +1471,25 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 34rem;
+}
+
+.confirm {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  text-align: center;
+}
+.confirm__header {
+  margin-bottom: 2rem;
+}
+.confirm__box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.confirm__time {
+  font-size: 8rem;
 }
 
 .row {

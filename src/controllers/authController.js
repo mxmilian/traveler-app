@@ -49,10 +49,13 @@ const signUp = catchAsync(async (req, res, next) => {
   await newUser.save({ validateBeforeSave: false });
 
   try {
-    const activateUrl = `${req.protocol}://${req.get(
+    // const activateUrl = `${req.protocol}://${req.get(
+    //   'host'
+    // )}/api/v1/users/activateAccount/${activateToken}`;
+    const activeUrl = `${req.protocol}://${req.get(
       'host'
-    )}/api/v1/users/activateAccount/${activateToken}`;
-    await new Email(newUser, activateUrl).sendConfirm();
+    )}/activation/${activateToken}`;
+    await new Email(newUser, activeUrl).sendConfirm();
     res.status(201).json({
       status: 'success',
       data: {

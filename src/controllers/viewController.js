@@ -49,6 +49,12 @@ const getMyTours = catchAsync(async (req, res, next) => {
   });
 });
 
+const activationAccount = (req, res) => {
+  res.status(200).render('activation', {
+    title: 'Activation account!'
+  });
+};
+
 const getLogin = (req, res) => {
   res.status(200).render('login');
 };
@@ -68,5 +74,6 @@ module.exports = {
   getLogin,
   getRegister,
   getMe,
-  getMyTours
+  getMyTours,
+  activationAccount
 };

@@ -1,0 +1,21 @@
+.confirm {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  text-align: center;
+
+  &__header {
+    margin-bottom: 2rem;
+  }
+
+  &__box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__time {
+    font-size: 8rem;
+  }
+}

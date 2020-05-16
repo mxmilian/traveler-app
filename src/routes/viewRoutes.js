@@ -14,7 +14,8 @@ const {
   getLogin,
   getRegister,
   getMe,
-  getMyTours
+  getMyTours,
+  activationAccount
 } = require('../controllers/viewController');
 
 //TEMPORARY!
@@ -25,6 +26,7 @@ router.get('/tours', isLoggedCurrently, getTours);
 router.get('/tours/:slug', isLoggedCurrently, getTour);
 router.get('/login', isLoggedCurrently, getLogin);
 router.get('/register', isLoggedCurrently, getRegister);
+router.get('/activation/:token', isLoggedCurrently, activationAccount);
 router.get('/me', protectRoute, getMe);
 router.get('/my-tours', protectRoute, getMyTours);
 
